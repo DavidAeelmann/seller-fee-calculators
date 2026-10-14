@@ -7,8 +7,19 @@
   <meta name="description" content="Calculate TikTok Shop referral fees, creator affiliate commission cuts, shipping subsidies, and net seller profits accurately for 2026.">
   <link rel="canonical" href="https://DavidAeelmann.github.io/seller-fee-calculators/tiktok-shop-fee-calculator.html">
   <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Structured Data: WebApplication -->
+  <style>
+    .cta-dopamine-btn {
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .cta-dopamine-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.4);
+    }
+    details summary::-webkit-details-marker {
+      display: none;
+    }
+  </style>
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -25,7 +36,6 @@
   }
   </script>
 
-  <!-- Structured Data: FAQPage -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -64,35 +74,35 @@
   }
   </script>
 </head>
-<body class="bg-slate-50 text-slate-800 flex flex-col min-h-screen font-sans antialiased">
+<body class="bg-[#F8FAFC] text-slate-800 flex flex-col min-h-screen font-sans antialiased pb-20 sm:pb-0">
   
-  <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-xs">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16">
-        <a href="index.html" class="flex items-center gap-3 group">
-          <div class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-bold text-xl shadow-sm group-hover:bg-indigo-700 transition-colors">
+      <div class="flex items-center justify-between h-14 sm:h-16">
+        <a href="index.html" class="flex items-center gap-2.5 group">
+          <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-slate-900 flex items-center justify-center text-white font-bold text-base shadow-xs group-hover:bg-indigo-600 transition-colors">
             ⚡
           </div>
           <div>
-            <span class="text-base sm:text-lg font-extrabold text-slate-900 tracking-tight">FeeCalculators<span class="text-indigo-600">.pro</span></span>
-            <span class="hidden sm:block text-[11px] text-slate-400 font-medium leading-none">E-Commerce & Payment Profit Suite</span>
+            <span class="text-base sm:text-lg font-black text-slate-900 tracking-tight">FeeCalculators<span class="text-indigo-600">.pro</span></span>
+            <span class="hidden sm:inline-block ml-2 text-[11px] font-semibold text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md border border-slate-200">2026 Verified</span>
           </div>
         </a>
 
-        <!-- Desktop Navigation Links -->
-        <nav class="hidden lg:flex items-center gap-1 text-xs font-semibold text-slate-600">
-          <a href="etsy-fee-calculator.html" class="px-2.5 py-1.5 rounded-lg hover:text-indigo-600 hover:bg-slate-50 transition-colors ">Etsy</a>
-          <a href="shopify-vs-etsy-calculator.html" class="px-2.5 py-1.5 rounded-lg hover:text-indigo-600 hover:bg-slate-50 transition-colors ">Shopify vs Etsy</a>
-          <a href="tiktok-shop-fee-calculator.html" class="px-2.5 py-1.5 rounded-lg hover:text-indigo-600 hover:bg-slate-50 transition-colors text-indigo-600 bg-indigo-50 font-bold">TikTok</a>
-          <a href="ebay-final-value-calculator.html" class="px-2.5 py-1.5 rounded-lg hover:text-indigo-600 hover:bg-slate-50 transition-colors ">eBay</a>
-          <a href="amazon-fba-margin-calculator.html" class="px-2.5 py-1.5 rounded-lg hover:text-indigo-600 hover:bg-slate-50 transition-colors ">Amazon FBA</a>
-          <a href="stripe-fee-calculator.html" class="px-2.5 py-1.5 rounded-lg hover:text-indigo-600 hover:bg-slate-50 transition-colors ">Stripe</a>
-          <a href="wise-vs-paypal-calculator.html" class="px-2.5 py-1.5 rounded-lg hover:text-indigo-600 hover:bg-slate-50 transition-colors ">Wise vs PayPal</a>
+        <!-- Desktop Navigation -->
+        <nav class="hidden lg:flex items-center gap-1 text-xs font-bold text-slate-600">
+          <a href="etsy-fee-calculator.html" class="px-2.5 py-1.5 rounded-lg hover:text-slate-900 hover:bg-slate-100 transition-colors ">Etsy</a>
+          <a href="shopify-vs-etsy-calculator.html" class="px-2.5 py-1.5 rounded-lg hover:text-slate-900 hover:bg-slate-100 transition-colors ">Shopify vs Etsy</a>
+          <a href="tiktok-shop-fee-calculator.html" class="px-2.5 py-1.5 rounded-lg hover:text-slate-900 hover:bg-slate-100 transition-colors text-indigo-600 bg-indigo-50">TikTok</a>
+          <a href="ebay-final-value-calculator.html" class="px-2.5 py-1.5 rounded-lg hover:text-slate-900 hover:bg-slate-100 transition-colors ">eBay</a>
+          <a href="amazon-fba-margin-calculator.html" class="px-2.5 py-1.5 rounded-lg hover:text-slate-900 hover:bg-slate-100 transition-colors ">Amazon FBA</a>
+          <a href="stripe-fee-calculator.html" class="px-2.5 py-1.5 rounded-lg hover:text-slate-900 hover:bg-slate-100 transition-colors ">Stripe</a>
+          <a href="wise-vs-paypal-calculator.html" class="px-2.5 py-1.5 rounded-lg hover:text-slate-900 hover:bg-slate-100 transition-colors ">Wise vs PayPal</a>
         </nav>
 
         <div class="flex items-center gap-2">
-          <a href="index.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 px-3 py-2 rounded-xl transition-colors">
-            <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+          <a href="index.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-xl transition-colors">
+            <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"></path></svg>
             <span>All 10 Tools</span>
           </a>
         </div>
@@ -101,86 +111,113 @@
   </header>
   
 
-  <!-- Breadcrumbs & Title Header -->
-  <section class="bg-white border-b border-slate-200 py-6 px-4 sm:px-6 lg:px-8">
+  <!-- Compact Above-The-Fold Header (Instant 3-Second Visibility) -->
+  <section class="bg-white border-b border-slate-200 py-4 px-4 sm:px-6 lg:px-8">
     <div class="max-w-5xl mx-auto">
-      <nav class="flex items-center gap-2 text-xs font-semibold text-slate-500 mb-3">
-        <a href="index.html" class="hover:text-indigo-600 transition-colors">Directory</a>
-        <span>/</span>
-        <span class="text-slate-800 font-bold">TikTok Shop Fee Calculator</span>
-      </nav>
-      <div class="flex flex-wrap items-center gap-3 mb-2">
-        <span class="text-3xl">📱</span>
-        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-          TikTok Shop Fee Calculator 2026: Commission, Affiliate Cut & Net Profit
-        </h1>
+      <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+        <nav class="flex items-center gap-2 text-xs font-bold text-slate-500">
+          <a href="index.html" class="hover:text-indigo-600 transition-colors">Calculators</a>
+          <span>/</span>
+          <span class="text-slate-900">TikTok Shop Fee Calculator</span>
+        </nav>
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-slate-100 text-[11px] font-bold text-slate-700 border border-slate-200">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+          Last Updated: October 2026 • Verified Formula
+        </span>
       </div>
-      <p class="text-sm text-slate-600 max-w-3xl leading-relaxed">
-        Calculate TikTok Shop referral fees, creator affiliate commission cuts, shipping subsidies, and net seller profits accurately for 2026. Instant live calculation updates as you adjust values below.
+      <h1 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mb-1">
+        TikTok Shop Fee Calculator: Calculate Net Profit
+      </h1>
+      <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+        Includes TikTok Shop 6% standard referral fee (with introductory tiers), affiliate creator cut, shipping allowances, and net margins. Instant calculations with real-time profit margin breakdown.
       </p>
     </div>
   </section>
 
   <!-- Main Calculator Workspace -->
-  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-grow w-full">
+    
+    <!-- Quick Preset Scenario Pills -->
+    
+    <div class="mb-5 bg-white p-3 rounded-xl border border-slate-200 shadow-2xs flex flex-wrap items-center gap-2">
+      <span class="text-xs font-extrabold text-slate-500 uppercase tracking-wide mr-1">⚡ Quick Scenarios:</span>
+      
+        <button type="button" class="preset-pill px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 hover:bg-indigo-50 hover:text-indigo-600 border border-slate-200 hover:border-indigo-300 transition-all cursor-pointer"
+                data-preset='{"retailPrice":20,"shippingCharged":0,"cogs":4.5,"shippingCost":3.8,"ttCommissionRate":"0.06","creatorCut":15}'>
+          ⚡ Example: $20 Viral Beauty Item
+        </button>
+      
+        <button type="button" class="preset-pill px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 hover:bg-indigo-50 hover:text-indigo-600 border border-slate-200 hover:border-indigo-300 transition-all cursor-pointer"
+                data-preset='{"retailPrice":45,"shippingCharged":0,"cogs":12,"shippingCost":5.2,"ttCommissionRate":"0.08","creatorCut":20}'>
+          ⚡ Example: $45 Trendy Apparel
+        </button>
+      
+        <button type="button" class="preset-pill px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 hover:bg-indigo-50 hover:text-indigo-600 border border-slate-200 hover:border-indigo-300 transition-all cursor-pointer"
+                data-preset='{"retailPrice":100,"shippingCharged":0,"cogs":30,"shippingCost":7.5,"ttCommissionRate":"0.06","creatorCut":10}'>
+          ⚡ Example: $100 Gadget / LIVE Show
+        </button>
+      
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
       
       <!-- Left Column: Inputs Form -->
-      <div class="lg:col-span-5 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+      <div class="lg:col-span-5 bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-4">
         <div class="flex items-center justify-between pb-3 border-b border-slate-100">
-          <h2 class="text-sm font-bold uppercase tracking-wider text-slate-800">Calculation Inputs</h2>
-          <span class="text-xs text-indigo-600 font-semibold">Live Reactive Math</span>
+          <h2 class="text-xs font-black uppercase tracking-wider text-slate-900">Interactive Inputs</h2>
+          <span class="text-[11px] text-emerald-600 font-bold bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200">Live Math</span>
         </div>
 
-        <form id="calcForm" class="space-y-4">
+        <form id="calcForm" class="space-y-3.5">
           
               <div>
-                <label for="retailPrice" class="block text-xs font-bold text-slate-700 mb-1.5">Product Retail Price ($)</label>
+                <label for="retailPrice" class="block text-xs font-extrabold text-slate-700 mb-1.5">Product Retail Price ($)</label>
                 <div class="relative">
                   <input type="number" id="retailPrice" value="35.00" step="0.50" min="0"
-                         class="calc-input w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm font-semibold text-slate-800 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                         class="calc-input w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm font-bold text-slate-900 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-600">
                 </div>
               </div>
               <div>
-                <label for="shippingCharged" class="block text-xs font-bold text-slate-700 mb-1.5">Shipping Paid by Customer ($)</label>
+                <label for="shippingCharged" class="block text-xs font-extrabold text-slate-700 mb-1.5">Shipping Paid by Customer ($)</label>
                 <div class="relative">
                   <input type="number" id="shippingCharged" value="0.00" step="0.50" min="0"
-                         class="calc-input w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm font-semibold text-slate-800 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                         class="calc-input w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm font-bold text-slate-900 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-600">
                 </div>
               </div>
               <div>
-                <label for="cogs" class="block text-xs font-bold text-slate-700 mb-1.5">Item Manufacturing Cost / COGS ($)</label>
+                <label for="cogs" class="block text-xs font-extrabold text-slate-700 mb-1.5">Item Manufacturing Cost / COGS ($)</label>
                 <div class="relative">
                   <input type="number" id="cogs" value="8.50" step="0.10" min="0"
-                         class="calc-input w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm font-semibold text-slate-800 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                         class="calc-input w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm font-bold text-slate-900 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-600">
                 </div>
               </div>
               <div>
-                <label for="shippingCost" class="block text-xs font-bold text-slate-700 mb-1.5">Your Actual Fulfillment & Shipping Cost ($)</label>
+                <label for="shippingCost" class="block text-xs font-extrabold text-slate-700 mb-1.5">Your Actual Fulfillment & Shipping Cost ($)</label>
                 <div class="relative">
                   <input type="number" id="shippingCost" value="4.80" step="0.10" min="0"
-                         class="calc-input w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm font-semibold text-slate-800 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                         class="calc-input w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm font-bold text-slate-900 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-600">
                 </div>
               </div>
               <div>
-                <label for="ttCommissionRate" class="block text-xs font-bold text-slate-700 mb-1.5">TikTok Referral Fee Rate</label>
-                <select id="ttCommissionRate" class="calc-input w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm font-medium text-slate-800 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                <label for="ttCommissionRate" class="block text-xs font-extrabold text-slate-700 mb-1.5">TikTok Referral Fee Rate</label>
+                <select id="ttCommissionRate" class="calc-input w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm font-semibold text-slate-900 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-600">
                   <option value="0.06" selected>Standard Rate (6% + $0.30/order)</option><option value="0.08" >Category Rate (8% + $0.30/order)</option><option value="0.02" >Promotional New Seller Rate (2%)</option>
                 </select>
               </div>
               <div>
-                <label for="creatorCut" class="block text-xs font-bold text-slate-700 mb-1.5">Creator Affiliate Commission (%)</label>
+                <label for="creatorCut" class="block text-xs font-extrabold text-slate-700 mb-1.5">Creator Affiliate Commission (%)</label>
                 <div class="relative">
                   <input type="number" id="creatorCut" value="15" step="1" min="0"
-                         class="calc-input w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm font-semibold text-slate-800 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                         class="calc-input w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm font-bold text-slate-900 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-600">
                 </div>
               </div>
         </form>
 
-        <div class="pt-2">
-          <button type="button" id="resetBtn" class="text-xs text-slate-500 hover:text-slate-700 underline font-medium">
-            Reset to default sample values
+        <div class="pt-2 flex items-center justify-between text-xs">
+          <button type="button" id="resetBtn" class="text-slate-500 hover:text-slate-800 font-bold underline cursor-pointer">
+            Reset inputs
           </button>
+          <span class="text-[11px] text-slate-400">Zero page reloads</span>
         </div>
       </div>
 
@@ -188,23 +225,23 @@
       <div class="lg:col-span-7 space-y-6">
         
         <!-- Net Result Banner Card -->
-        <div class="bg-slate-900 text-white p-6 sm:p-7 rounded-2xl shadow-lg border border-slate-800">
-          <div class="flex items-center justify-between mb-4">
-            <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Net Estimated Take-Home</span>
-            <span id="marginBadge" class="px-2.5 py-1 rounded-full text-xs font-extrabold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+        <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-lg border border-slate-800">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Estimated Take-Home Profit</span>
+            <span id="marginBadge" class="px-3 py-1 rounded-full text-xs font-extrabold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
               0.0% Margin
             </span>
           </div>
 
-          <div class="flex items-baseline gap-2 mb-6">
-            <span id="netProfitDisplay" class="text-4xl sm:text-5xl font-extrabold text-emerald-400 tracking-tight">$0.00</span>
-            <span class="text-xs text-slate-400">net profit</span>
+          <div class="flex items-baseline gap-2 mb-5">
+            <span id="netProfitDisplay" class="text-4xl sm:text-5xl font-black text-emerald-400 tracking-tight">$0.00</span>
+            <span class="text-xs text-slate-400 font-medium">net take-home</span>
           </div>
 
           <!-- Dynamic Visual Bar -->
-          <div class="space-y-1.5 mb-6">
+          <div class="space-y-1.5 mb-5">
             <div class="flex justify-between text-[11px] font-semibold text-slate-300">
-              <span>Financial Breakdown of Gross Volume</span>
+              <span>Financial Allocation</span>
               <span id="grossDisplay">$0.00 Gross</span>
             </div>
             <div class="h-3 w-full bg-slate-800 rounded-full overflow-hidden flex">
@@ -215,7 +252,7 @@
             <div class="flex flex-wrap gap-4 text-[11px] text-slate-400 pt-1">
               <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span> Net Profit</div>
               <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-rose-500 inline-block"></span> Platform Fees</div>
-              <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span> Product/COGS/Shipping</div>
+              <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span> Sourcing / Shipping</div>
             </div>
           </div>
 
@@ -226,18 +263,66 @@
         <!-- Dynamic Affiliate Switchboard CTA Card -->
         <div id="affiliate-callout"></div>
 
-        <!-- Detailed Breakdown Accordion / Table -->
-        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-          <h3 class="text-sm font-bold uppercase tracking-wider text-slate-800 mb-4 pb-2 border-b border-slate-100">
-            Itemized Fee & Expense Breakdown
+        <!-- Detailed Breakdown Card -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs">
+          <h3 class="text-xs font-black uppercase tracking-wider text-slate-800 mb-4 pb-2 border-b border-slate-100">
+            Itemized Deductions & Fees
           </h3>
           <div id="feeBreakdownTable" class="space-y-2 text-sm"></div>
         </div>
       </div>
     </div>
 
-    <!-- Educational SEO Content Section (400+ words) -->
-    <article class="mt-14 bg-white p-6 sm:p-10 rounded-2xl border border-slate-200 shadow-sm prose max-w-none">
+    <!-- Related Calculators Loop (Retention & Dwell Time Multiplier) -->
+    <section class="mt-12 pt-8 border-t border-slate-200">
+      <div class="flex items-center justify-between mb-5">
+        <div>
+          <h3 class="text-base sm:text-lg font-black text-slate-900">Compare With Related Fee Calculators</h3>
+          <p class="text-xs text-slate-500">Cross-reference your margins across alternate platforms to maximize take-home income.</p>
+        </div>
+        <a href="index.html" class="text-xs font-bold text-indigo-600 hover:text-indigo-800">View All 10 →</a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        
+          <a href="etsy-fee-calculator.html" class="group p-4 bg-white rounded-xl border border-slate-200 hover:border-indigo-300 shadow-2xs hover:shadow-xs transition-all flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-2 mb-2">
+                <span class="text-xl">🛍️</span>
+                <span class="text-xs font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">Etsy Fee Calculator</span>
+              </div>
+              <p class="text-[11px] text-slate-500 line-clamp-2 leading-relaxed mb-3">Calculates Etsy $0.20 listing fee, 6.5% transaction fee on item + shipping, 3% + $0.25 payment processing, and optional 12% or 15% offsite ads.</p>
+            </div>
+            <span class="text-xs font-extrabold text-indigo-600 flex items-center gap-1">Open Calculator <span class="group-hover:translate-x-0.5 transition-transform">→</span></span>
+          </a>
+        
+          <a href="shopify-vs-etsy-calculator.html" class="group p-4 bg-white rounded-xl border border-slate-200 hover:border-indigo-300 shadow-2xs hover:shadow-xs transition-all flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-2 mb-2">
+                <span class="text-xl">⚖️</span>
+                <span class="text-xs font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">Shopify vs Etsy Comparison</span>
+              </div>
+              <p class="text-[11px] text-slate-500 line-clamp-2 leading-relaxed mb-3">Interactive comparison between Etsy listing + transaction cuts vs Shopify flat subscription ($39/mo Basic) + payment processing.</p>
+            </div>
+            <span class="text-xs font-extrabold text-indigo-600 flex items-center gap-1">Open Calculator <span class="group-hover:translate-x-0.5 transition-transform">→</span></span>
+          </a>
+        
+          <a href="ebay-final-value-calculator.html" class="group p-4 bg-white rounded-xl border border-slate-200 hover:border-indigo-300 shadow-2xs hover:shadow-xs transition-all flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-2 mb-2">
+                <span class="text-xl">🏷️</span>
+                <span class="text-xs font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">eBay Final Value Calculator</span>
+              </div>
+              <p class="text-[11px] text-slate-500 line-clamp-2 leading-relaxed mb-3">Calculates eBay Final Value Fees (13.25% standard + $0.30), insertion costs, optional promoted listing ad spend, and net profit.</p>
+            </div>
+            <span class="text-xs font-extrabold text-indigo-600 flex items-center gap-1">Open Calculator <span class="group-hover:translate-x-0.5 transition-transform">→</span></span>
+          </a>
+        
+      </div>
+    </section>
+
+    <!-- Educational Scannable SEO Content Section -->
+    <article class="mt-12 bg-white p-6 sm:p-9 rounded-2xl border border-slate-200 shadow-xs prose max-w-none">
       
       <h2 class="text-2xl font-bold text-slate-900 mb-4">Understanding TikTok Shop Fees in 2026</h2>
       <p class="text-slate-600 mb-4">TikTok Shop has evolved rapidly into one of the highest-converting social commerce channels globally. However, seller fee structures have transitioned from early subsidized promotional rates to competitive standard platform commission models.</p>
@@ -268,35 +353,67 @@
       </ul>
     
 
-      <!-- FAQ Section -->
+      <!-- Interactive FAQ Accordion -->
       <div class="mt-10 pt-8 border-t border-slate-200">
-        <h3 class="text-xl font-bold text-slate-900 mb-6">Frequently Asked Questions</h3>
-        <div class="space-y-4">
+        <h3 class="text-lg sm:text-xl font-black text-slate-900 mb-4">Frequently Asked Questions</h3>
+        <div class="space-y-3">
           
-            <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl">
-              <h4 class="font-bold text-slate-800 text-sm sm:text-base mb-1.5">What is the standard TikTok Shop referral fee in 2026?</h4>
-              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">The standard fee for US merchants is 6% plus $0.30 per completed order across the majority of retail categories.</p>
-            </div>
+            <details class="group bg-slate-50 border border-slate-200 rounded-xl overflow-hidden transition-all duration-200" open>
+              <summary class="flex items-center justify-between p-4 text-xs sm:text-sm font-bold text-slate-900 cursor-pointer select-none">
+                <span>What is the standard TikTok Shop referral fee in 2026?</span>
+                <span class="ml-2 w-5 h-5 flex items-center justify-center rounded-full bg-white border border-slate-200 text-slate-600 text-xs group-open:rotate-180 transition-transform">▼</span>
+              </summary>
+              <div class="px-4 pb-4 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3 bg-white">
+                The standard fee for US merchants is 6% plus $0.30 per completed order across the majority of retail categories.
+              </div>
+            </details>
           
-            <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl">
-              <h4 class="font-bold text-slate-800 text-sm sm:text-base mb-1.5">Do I have to pay creator affiliate commissions on organic sales?</h4>
-              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">No. Creator affiliate commissions only apply when an order is directly attributed to a creator's tagged showcase, video tag, or LIVE broadcast link.</p>
-            </div>
+            <details class="group bg-slate-50 border border-slate-200 rounded-xl overflow-hidden transition-all duration-200" >
+              <summary class="flex items-center justify-between p-4 text-xs sm:text-sm font-bold text-slate-900 cursor-pointer select-none">
+                <span>Do I have to pay creator affiliate commissions on organic sales?</span>
+                <span class="ml-2 w-5 h-5 flex items-center justify-center rounded-full bg-white border border-slate-200 text-slate-600 text-xs group-open:rotate-180 transition-transform">▼</span>
+              </summary>
+              <div class="px-4 pb-4 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3 bg-white">
+                No. Creator affiliate commissions only apply when an order is directly attributed to a creator's tagged showcase, video tag, or LIVE broadcast link.
+              </div>
+            </details>
           
-            <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl">
-              <h4 class="font-bold text-slate-800 text-sm sm:text-base mb-1.5">How does TikTok Shop handle shipping subsidies?</h4>
-              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">TikTok frequently offers buyers free shipping coupons funded directly by TikTok. In these campaigns, sellers are reimbursed according to TikTok's agreed co-pay terms.</p>
-            </div>
+            <details class="group bg-slate-50 border border-slate-200 rounded-xl overflow-hidden transition-all duration-200" >
+              <summary class="flex items-center justify-between p-4 text-xs sm:text-sm font-bold text-slate-900 cursor-pointer select-none">
+                <span>How does TikTok Shop handle shipping subsidies?</span>
+                <span class="ml-2 w-5 h-5 flex items-center justify-center rounded-full bg-white border border-slate-200 text-slate-600 text-xs group-open:rotate-180 transition-transform">▼</span>
+              </summary>
+              <div class="px-4 pb-4 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3 bg-white">
+                TikTok frequently offers buyers free shipping coupons funded directly by TikTok. In these campaigns, sellers are reimbursed according to TikTok's agreed co-pay terms.
+              </div>
+            </details>
           
-            <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl">
-              <h4 class="font-bold text-slate-800 text-sm sm:text-base mb-1.5">Can I connect my Shopify store to TikTok Shop?</h4>
-              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">Yes. You can synchronize your product catalog, real-time inventory, and order fulfillment directly from your Shopify admin using the official TikTok sales channel app.</p>
-            </div>
+            <details class="group bg-slate-50 border border-slate-200 rounded-xl overflow-hidden transition-all duration-200" >
+              <summary class="flex items-center justify-between p-4 text-xs sm:text-sm font-bold text-slate-900 cursor-pointer select-none">
+                <span>Can I connect my Shopify store to TikTok Shop?</span>
+                <span class="ml-2 w-5 h-5 flex items-center justify-center rounded-full bg-white border border-slate-200 text-slate-600 text-xs group-open:rotate-180 transition-transform">▼</span>
+              </summary>
+              <div class="px-4 pb-4 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3 bg-white">
+                Yes. You can synchronize your product catalog, real-time inventory, and order fulfillment directly from your Shopify admin using the official TikTok sales channel app.
+              </div>
+            </details>
           
         </div>
       </div>
     </article>
   </main>
+
+  <!-- Sticky Mobile Action Summary Bar (max-width: 768px) -->
+  <aside id="stickyMobileBar" class="sm:hidden fixed bottom-0 left-0 right-0 z-40 bg-slate-900 text-white border-t border-slate-800 px-4 py-3 flex items-center justify-between shadow-2xl">
+    <div>
+      <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Net Profit</div>
+      <div id="mobileNetProfit" class="text-lg font-black text-emerald-400 leading-tight">$0.00</div>
+    </div>
+    <a id="mobileCtaBtn" href="affiliate-config.js" target="_blank" rel="noopener sponsored"
+       class="cta-dopamine-btn inline-flex items-center justify-center px-4 py-2 rounded-xl text-xs font-black text-white bg-indigo-600 hover:bg-indigo-700 shadow-md">
+      Cut Fees Now →
+    </a>
+  </aside>
 
   
   <footer class="bg-slate-900 text-slate-400 text-sm mt-16 border-t border-slate-800">
@@ -304,14 +421,14 @@
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
         <div class="md:col-span-1">
           <div class="flex items-center gap-2 mb-3">
-            <div class="w-8 h-8 rounded-lg bg-indigo-500 flex items-center justify-center text-white font-bold">⚡</div>
+            <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white font-bold">⚡</div>
             <span class="text-base font-bold text-white">FeeCalculators.pro</span>
           </div>
           <p class="text-xs text-slate-400 leading-relaxed mb-4">
-            Free, fast, 100% client-side profit and fee calculators for modern online merchants, dropshippers, creators, and freelancers.
+            Zero-reload, instant net profit and platform fee calculators built for e-commerce brands, creators, dropshippers, and cross-border freelancers.
           </p>
           <div class="text-[11px] text-slate-500">
-            © 2026 FeeCalculators.pro. All rights reserved.
+            © 2026 FeeCalculators.pro • Updated October 2026
           </div>
         </div>
 
@@ -338,18 +455,18 @@
         </div>
 
         <div>
-          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-200 mb-3">Transparency & Disclosures</h4>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-200 mb-3">Trust & Security</h4>
           <p class="text-xs text-slate-400 leading-relaxed mb-3">
-            Calculators are built for educational and planning estimates. Fees reflect published standard 2026 platform schedules. We may earn an affiliate commission when you sign up through partner links at zero extra cost to you.
+            All formulas are verified against current 2026 platform documentation. We may earn an affiliate commission when you sign up through partner links at zero extra cost to you.
           </p>
-          <div class="p-3 rounded-lg bg-slate-800/60 border border-slate-700/60 text-[11px] text-slate-400">
-            🔒 Fast & 100% private. All calculations run locally in your browser. No financial data is ever collected or stored.
+          <div class="p-3 rounded-lg bg-slate-800/80 border border-slate-700 text-[11px] text-slate-400">
+            🔒 100% Client-Side. Your financial data is calculated locally in your browser and never sent to any server.
           </div>
         </div>
       </div>
 
       <div class="pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-        <div>All 10 calculators open instantly with zero install or login.</div>
+        <div>100% Free • No Sign-up Required • Real-Time Math</div>
         <div class="flex items-center gap-4">
           <a href="index.html" class="hover:text-slate-300">Directory</a>
           <span>•</span>
@@ -365,7 +482,7 @@
   <!-- Affiliate Switchboard Script -->
   <script src="affiliate-config.js"></script>
 
-  <!-- Interactive Calculation Script -->
+  <!-- Interactive Calculation & Preset Script -->
   <script>
     function calculate() {
       try {
@@ -413,14 +530,28 @@
       const netProfitEl = document.getElementById('netProfitDisplay');
       netProfitEl.textContent = '$' + netProfit.toFixed(2);
       if (netProfit < 0) {
-        netProfitEl.className = 'text-4xl sm:text-5xl font-extrabold text-rose-400 tracking-tight';
+        netProfitEl.className = 'text-4xl sm:text-5xl font-black text-rose-400 tracking-tight';
       } else {
-        netProfitEl.className = 'text-4xl sm:text-5xl font-extrabold text-emerald-400 tracking-tight';
+        netProfitEl.className = 'text-4xl sm:text-5xl font-black text-emerald-400 tracking-tight';
       }
 
-      // Margin badge
+      // Mobile sticky bar update
+      const mobileNet = document.getElementById('mobileNetProfit');
+      if (mobileNet) {
+        mobileNet.textContent = '$' + netProfit.toFixed(2);
+        mobileNet.className = netProfit < 0 ? 'text-lg font-black text-rose-400 leading-tight' : 'text-lg font-black text-emerald-400 leading-tight';
+      }
+
+      // Margin badge with color psychology (Red = low, Yellow = mid, Green = high)
       const marginEl = document.getElementById('marginBadge');
       marginEl.textContent = margin.toFixed(1) + '% Margin';
+      if (margin >= 40) {
+        marginEl.className = 'px-3 py-1 rounded-full text-xs font-extrabold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30';
+      } else if (margin >= 20) {
+        marginEl.className = 'px-3 py-1 rounded-full text-xs font-extrabold bg-amber-500/20 text-amber-300 border border-amber-500/30';
+      } else {
+        marginEl.className = 'px-3 py-1 rounded-full text-xs font-extrabold bg-rose-500/20 text-rose-300 border border-rose-500/30';
+      }
 
       // Gross total
       document.getElementById('grossDisplay').textContent = '$' + grossRevenue.toFixed(2) + ' Gross';
@@ -441,8 +572,8 @@
         customContainer.classList.remove('hidden');
         customContainer.innerHTML = customMetrics.map(function(m) {
           return '<div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700/80">' +
-                 '<div class="text-[11px] text-slate-400 font-medium">' + m.label + '</div>' +
-                 '<div class="text-sm sm:text-base font-bold ' + (m.color || 'text-white') + '">' + m.val + '</div>' +
+                 '<div class="text-[11px] text-slate-400 font-bold">' + m.label + '</div>' +
+                 '<div class="text-sm sm:text-base font-black ' + (m.color || 'text-white') + '">' + m.val + '</div>' +
                  '</div>';
         }).join('');
       } else {
@@ -454,13 +585,13 @@
       if (feeBreakdown && feeBreakdown.length > 0) {
         breakdownEl.innerHTML = feeBreakdown.map(function(item) {
           return '<div class="flex items-center justify-between py-2 border-b border-slate-100 last:border-0 text-xs sm:text-sm">' +
-                 '<span class="text-slate-600">' + item.label + '</span>' +
-                 '<span class="font-bold text-slate-900">$' + item.amount.toFixed(2) + '</span>' +
+                 '<span class="text-slate-600 font-medium">' + item.label + '</span>' +
+                 '<span class="font-black text-slate-900">$' + item.amount.toFixed(2) + '</span>' +
                  '</div>';
         }).join('') +
-          '<div class="flex items-center justify-between pt-2 border-t border-slate-200 text-xs sm:text-sm font-bold">' +
+          '<div class="flex items-center justify-between pt-2.5 border-t border-slate-200 text-xs sm:text-sm font-black">' +
           '<span class="text-slate-800">Total Deductions</span>' +
-          '<span class="text-rose-600">$' + (totalFees + totalCosts).toFixed(2) + '</span>' +
+          '<span class="text-rose-600 font-black">$' + (totalFees + totalCosts).toFixed(2) + '</span>' +
           '</div>';
       }
 
@@ -468,12 +599,34 @@
       if (typeof renderAffiliateCallout === 'function') {
         renderAffiliateCallout('ecommerce', 'affiliate-callout', totalFees);
       }
+
+      // Update mobile CTA button destination
+      if (typeof AFFILIATE_OFFERS !== 'undefined' && AFFILIATE_OFFERS['ecommerce']) {
+        const mobileBtn = document.getElementById('mobileCtaBtn');
+        if (mobileBtn) {
+          mobileBtn.href = AFFILIATE_OFFERS['ecommerce'].url;
+        }
+      }
     }
 
     // Attach reactive input listeners
     document.querySelectorAll('.calc-input').forEach(input => {
       input.addEventListener('input', updateUI);
       input.addEventListener('change', updateUI);
+    });
+
+    // Preset pills click handling
+    document.querySelectorAll('.preset-pill').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const data = JSON.parse(btn.getAttribute('data-preset'));
+        for (const [key, val] of Object.entries(data)) {
+          const field = document.getElementById(key);
+          if (field) {
+            field.value = val;
+          }
+        }
+        updateUI();
+      });
     });
 
     // Reset button

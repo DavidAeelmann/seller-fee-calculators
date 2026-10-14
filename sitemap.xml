@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 
-  NOTE: Find and replace 'https://DavidAeelmann.github.io/seller-fee-calculators' 
-  with your live production URL (e.g. https://fees.yourdomain.com or https://johndoe.github.io/seller-fee-calculators)
--->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://DavidAeelmann.github.io/seller-fee-calculators/index.html</loc>

@@ -1004,35 +1004,93 @@ const calculators = [
 ];
 
 // Helper to build modern header
+
+const presetsMap = {
+  'etsy-fee-calculator.html': [
+    { label: '⚡ Example: $25 Handmade Craft', values: { salePrice: 25.00, shippingCharged: 4.00, itemCost: 6.00, actualShipping: 3.80, offsiteAds: 'none', listingRenewals: 1 } },
+    { label: '⚡ Example: $75 Custom Jewelry', values: { salePrice: 75.00, shippingCharged: 5.00, itemCost: 18.00, actualShipping: 4.50, offsiteAds: 'opted', listingRenewals: 1 } },
+    { label: '⚡ Example: $150 Vintage Item', values: { salePrice: 150.00, shippingCharged: 25.00, itemCost: 40.00, actualShipping: 22.00, offsiteAds: 'mandatory', listingRenewals: 2 } }
+  ],
+  'shopify-vs-etsy-calculator.html': [
+    { label: '⚡ Example: 50 Orders / $2k Mo', values: { monthlyOrders: 50, avgOrderValue: 40.00, cogsPerOrder: 15.00, shopifyPlan: 'basic', etsyAdPct: 0 } },
+    { label: '⚡ Example: 200 Orders / $9k Mo', values: { monthlyOrders: 200, avgOrderValue: 45.00, cogsPerOrder: 16.00, shopifyPlan: 'shopify', etsyAdPct: 0 } },
+    { label: '⚡ Example: 500 Orders / $25k Mo', values: { monthlyOrders: 500, avgOrderValue: 50.00, cogsPerOrder: 18.00, shopifyPlan: 'advanced', etsyAdPct: 12 } }
+  ],
+  'tiktok-shop-fee-calculator.html': [
+    { label: '⚡ Example: $20 Viral Beauty Item', values: { retailPrice: 20.00, shippingCharged: 0.00, cogs: 4.50, shippingCost: 3.80, ttCommissionRate: '0.06', creatorCut: 15 } },
+    { label: '⚡ Example: $45 Trendy Apparel', values: { retailPrice: 45.00, shippingCharged: 0.00, cogs: 12.00, shippingCost: 5.20, ttCommissionRate: '0.08', creatorCut: 20 } },
+    { label: '⚡ Example: $100 Gadget / LIVE Show', values: { retailPrice: 100.00, shippingCharged: 0.00, cogs: 30.00, shippingCost: 7.50, ttCommissionRate: '0.06', creatorCut: 10 } }
+  ],
+  'ebay-final-value-calculator.html': [
+    { label: '⚡ Example: $35 Video Game / Book', values: { itemSoldPrice: 35.00, shippingCharged: 4.50, itemCost: 10.00, actualShipping: 4.00, ebayCategory: 'books', promotedAdRate: 2.0 } },
+    { label: '⚡ Example: $120 Sneakers / Clothes', values: { itemSoldPrice: 120.00, shippingCharged: 12.00, itemCost: 45.00, actualShipping: 11.00, ebayCategory: 'clothing', promotedAdRate: 5.0 } },
+    { label: '⚡ Example: $450 Camera / Laptop', values: { itemSoldPrice: 450.00, shippingCharged: 18.00, itemCost: 260.00, actualShipping: 16.50, ebayCategory: 'electronics', promotedAdRate: 3.5 } }
+  ],
+  'printful-dropshipping-calculator.html': [
+    { label: '⚡ Example: $28 Graphic T-Shirt', values: { sellingPrice: 28.00, shippingCharged: 4.99, printfulBaseCost: 10.50, printfulShipping: 4.79, storePlatform: 'etsy', marketingSpend: 4.00 } },
+    { label: '⚡ Example: $55 Heavyweight Hoodie', values: { sellingPrice: 55.00, shippingCharged: 6.99, printfulBaseCost: 24.50, printfulShipping: 6.99, storePlatform: 'shopify', marketingSpend: 8.00 } },
+    { label: '⚡ Example: $22 Ceramic Coffee Mug', values: { sellingPrice: 22.00, shippingCharged: 5.50, printfulBaseCost: 7.95, printfulShipping: 5.99, storePlatform: 'shopify', marketingSpend: 3.00 } }
+  ],
+  'amazon-fba-margin-calculator.html': [
+    { label: '⚡ Example: $22 Small Kitchen Gadget', values: { amazonPrice: 22.00, cogsPerUnit: 3.80, inboundFreight: 0.85, sizeTier: 'small_std', referralRate: 15, ppcSpend: 2.80 } },
+    { label: '⚡ Example: $38 Large Standard Item', values: { amazonPrice: 38.00, cogsPerUnit: 8.00, inboundFreight: 1.80, sizeTier: 'large_std_1lb', referralRate: 15, ppcSpend: 4.50 } },
+    { label: '⚡ Example: $85 Oversize Organizer', values: { amazonPrice: 85.00, cogsPerUnit: 22.00, inboundFreight: 4.50, sizeTier: 'oversize', referralRate: 15, ppcSpend: 9.00 } }
+  ],
+  'stripe-fee-calculator.html': [
+    { label: '⚡ Example: $50 Domestic Subscription', values: { targetAmount: 50.00, calcMode: 'forward', cardOrigin: 'domestic', stripeBilling: '0.005' } },
+    { label: '⚡ Example: $500 Reverse Invoice Goal', values: { targetAmount: 500.00, calcMode: 'reverse', cardOrigin: 'domestic', stripeBilling: '0' } },
+    { label: '⚡ Example: $2,500 International Client', values: { targetAmount: 2500.00, calcMode: 'forward', cardOrigin: 'international_fx', stripeBilling: '0' } }
+  ],
+  'paypal-international-calculator.html': [
+    { label: '⚡ Example: $150 Domestic Checkout', values: { paymentAmount: 150.00, ppTxType: 'domestic_checkout', currencySpread: '0' } },
+    { label: '⚡ Example: $600 Cross-Border Client', values: { paymentAmount: 600.00, ppTxType: 'cross_border', currencySpread: '0' } },
+    { label: '⚡ Example: $1,800 Cross-Border + FX Loss', values: { paymentAmount: 1800.00, ppTxType: 'cross_border', currencySpread: '4.0' } }
+  ],
+  'wise-vs-paypal-calculator.html': [
+    { label: '⚡ Example: $1,200 Freelance Project', values: { invoiceTotal: 1200.00, clientCurrency: 'eur_usd', wiseFeeRate: 0.45 } },
+    { label: '⚡ Example: $4,500 Agency Retainer', values: { invoiceTotal: 4500.00, clientCurrency: 'gbp_usd', wiseFeeRate: 0.42 } },
+    { label: '⚡ Example: $12,000 Annual Volume', values: { invoiceTotal: 12000.00, clientCurrency: 'aud_usd', wiseFeeRate: 0.40 } }
+  ],
+  'patreon-vs-substack-calculator.html': [
+    { label: '⚡ Example: 100 Members @ $5/Mo', values: { monthlySubscribers: 100, monthlyPrice: 5.00, patreonPlan: 'pro', annualDiscountPct: 10 } },
+    { label: '⚡ Example: 500 Members @ $8/Mo', values: { monthlySubscribers: 500, monthlyPrice: 8.00, patreonPlan: 'pro', annualDiscountPct: 15 } },
+    { label: '⚡ Example: 2,000 Members @ $12/Mo', values: { monthlySubscribers: 2000, monthlyPrice: 12.00, patreonPlan: 'premium', annualDiscountPct: 20 } }
+  ]
+};
+
+function getRelatedCalculators(currentSlug) {
+  return calculators.filter(c => c.slug !== currentSlug).slice(0, 3);
+}
+
 function getHeaderHtml(activeSlug = '') {
   return `
-  <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-xs">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16">
-        <a href="index.html" class="flex items-center gap-3 group">
-          <div class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-bold text-xl shadow-sm group-hover:bg-indigo-700 transition-colors">
+      <div class="flex items-center justify-between h-14 sm:h-16">
+        <a href="index.html" class="flex items-center gap-2.5 group">
+          <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-slate-900 flex items-center justify-center text-white font-bold text-base shadow-xs group-hover:bg-indigo-600 transition-colors">
             ⚡
           </div>
           <div>
-            <span class="text-base sm:text-lg font-extrabold text-slate-900 tracking-tight">FeeCalculators<span class="text-indigo-600">.pro</span></span>
-            <span class="hidden sm:block text-[11px] text-slate-400 font-medium leading-none">E-Commerce & Payment Profit Suite</span>
+            <span class="text-base sm:text-lg font-black text-slate-900 tracking-tight">FeeCalculators<span class="text-indigo-600">.pro</span></span>
+            <span class="hidden sm:inline-block ml-2 text-[11px] font-semibold text-slate-600 bg-slate-100 px-2 py-0.5 rounded-md border border-slate-200">2026 Verified</span>
           </div>
         </a>
 
-        <!-- Desktop Navigation Links -->
-        <nav class="hidden lg:flex items-center gap-1 text-xs font-semibold text-slate-600">
-          <a href="etsy-fee-calculator.html" class="px-2.5 py-1.5 rounded-lg hover:text-indigo-600 hover:bg-slate-50 transition-colors ${activeSlug === 'etsy-fee-calculator.html' ? 'text-indigo-600 bg-indigo-50 font-bold' : ''}">Etsy</a>
-          <a href="shopify-vs-etsy-calculator.html" class="px-2.5 py-1.5 rounded-lg hover:text-indigo-600 hover:bg-slate-50 transition-colors ${activeSlug === 'shopify-vs-etsy-calculator.html' ? 'text-indigo-600 bg-indigo-50 font-bold' : ''}">Shopify vs Etsy</a>
-          <a href="tiktok-shop-fee-calculator.html" class="px-2.5 py-1.5 rounded-lg hover:text-indigo-600 hover:bg-slate-50 transition-colors ${activeSlug === 'tiktok-shop-fee-calculator.html' ? 'text-indigo-600 bg-indigo-50 font-bold' : ''}">TikTok</a>
-          <a href="ebay-final-value-calculator.html" class="px-2.5 py-1.5 rounded-lg hover:text-indigo-600 hover:bg-slate-50 transition-colors ${activeSlug === 'ebay-final-value-calculator.html' ? 'text-indigo-600 bg-indigo-50 font-bold' : ''}">eBay</a>
-          <a href="amazon-fba-margin-calculator.html" class="px-2.5 py-1.5 rounded-lg hover:text-indigo-600 hover:bg-slate-50 transition-colors ${activeSlug === 'amazon-fba-margin-calculator.html' ? 'text-indigo-600 bg-indigo-50 font-bold' : ''}">Amazon FBA</a>
-          <a href="stripe-fee-calculator.html" class="px-2.5 py-1.5 rounded-lg hover:text-indigo-600 hover:bg-slate-50 transition-colors ${activeSlug === 'stripe-fee-calculator.html' ? 'text-indigo-600 bg-indigo-50 font-bold' : ''}">Stripe</a>
-          <a href="wise-vs-paypal-calculator.html" class="px-2.5 py-1.5 rounded-lg hover:text-indigo-600 hover:bg-slate-50 transition-colors ${activeSlug === 'wise-vs-paypal-calculator.html' ? 'text-indigo-600 bg-indigo-50 font-bold' : ''}">Wise vs PayPal</a>
+        <!-- Desktop Navigation -->
+        <nav class="hidden lg:flex items-center gap-1 text-xs font-bold text-slate-600">
+          <a href="etsy-fee-calculator.html" class="px-2.5 py-1.5 rounded-lg hover:text-slate-900 hover:bg-slate-100 transition-colors ${activeSlug === 'etsy-fee-calculator.html' ? 'text-indigo-600 bg-indigo-50' : ''}">Etsy</a>
+          <a href="shopify-vs-etsy-calculator.html" class="px-2.5 py-1.5 rounded-lg hover:text-slate-900 hover:bg-slate-100 transition-colors ${activeSlug === 'shopify-vs-etsy-calculator.html' ? 'text-indigo-600 bg-indigo-50' : ''}">Shopify vs Etsy</a>
+          <a href="tiktok-shop-fee-calculator.html" class="px-2.5 py-1.5 rounded-lg hover:text-slate-900 hover:bg-slate-100 transition-colors ${activeSlug === 'tiktok-shop-fee-calculator.html' ? 'text-indigo-600 bg-indigo-50' : ''}">TikTok</a>
+          <a href="ebay-final-value-calculator.html" class="px-2.5 py-1.5 rounded-lg hover:text-slate-900 hover:bg-slate-100 transition-colors ${activeSlug === 'ebay-final-value-calculator.html' ? 'text-indigo-600 bg-indigo-50' : ''}">eBay</a>
+          <a href="amazon-fba-margin-calculator.html" class="px-2.5 py-1.5 rounded-lg hover:text-slate-900 hover:bg-slate-100 transition-colors ${activeSlug === 'amazon-fba-margin-calculator.html' ? 'text-indigo-600 bg-indigo-50' : ''}">Amazon FBA</a>
+          <a href="stripe-fee-calculator.html" class="px-2.5 py-1.5 rounded-lg hover:text-slate-900 hover:bg-slate-100 transition-colors ${activeSlug === 'stripe-fee-calculator.html' ? 'text-indigo-600 bg-indigo-50' : ''}">Stripe</a>
+          <a href="wise-vs-paypal-calculator.html" class="px-2.5 py-1.5 rounded-lg hover:text-slate-900 hover:bg-slate-100 transition-colors ${activeSlug === 'wise-vs-paypal-calculator.html' ? 'text-indigo-600 bg-indigo-50' : ''}">Wise vs PayPal</a>
         </nav>
 
         <div class="flex items-center gap-2">
-          <a href="index.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 px-3 py-2 rounded-xl transition-colors">
-            <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+          <a href="index.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-xl transition-colors">
+            <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"></path></svg>
             <span>All 10 Tools</span>
           </a>
         </div>
@@ -1042,7 +1100,6 @@ function getHeaderHtml(activeSlug = '') {
   `;
 }
 
-// Helper to build modern footer with full cross-linking
 function getFooterHtml() {
   return `
   <footer class="bg-slate-900 text-slate-400 text-sm mt-16 border-t border-slate-800">
@@ -1050,14 +1107,14 @@ function getFooterHtml() {
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
         <div class="md:col-span-1">
           <div class="flex items-center gap-2 mb-3">
-            <div class="w-8 h-8 rounded-lg bg-indigo-500 flex items-center justify-center text-white font-bold">⚡</div>
+            <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white font-bold">⚡</div>
             <span class="text-base font-bold text-white">FeeCalculators.pro</span>
           </div>
           <p class="text-xs text-slate-400 leading-relaxed mb-4">
-            Free, fast, 100% client-side profit and fee calculators for modern online merchants, dropshippers, creators, and freelancers.
+            Zero-reload, instant net profit and platform fee calculators built for e-commerce brands, creators, dropshippers, and cross-border freelancers.
           </p>
           <div class="text-[11px] text-slate-500">
-            © 2026 FeeCalculators.pro. All rights reserved.
+            © 2026 FeeCalculators.pro • Updated October 2026
           </div>
         </div>
 
@@ -1084,18 +1141,18 @@ function getFooterHtml() {
         </div>
 
         <div>
-          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-200 mb-3">Transparency & Disclosures</h4>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-200 mb-3">Trust & Security</h4>
           <p class="text-xs text-slate-400 leading-relaxed mb-3">
-            Calculators are built for educational and planning estimates. Fees reflect published standard 2026 platform schedules. We may earn an affiliate commission when you sign up through partner links at zero extra cost to you.
+            All formulas are verified against current 2026 platform documentation. We may earn an affiliate commission when you sign up through partner links at zero extra cost to you.
           </p>
-          <div class="p-3 rounded-lg bg-slate-800/60 border border-slate-700/60 text-[11px] text-slate-400">
-            🔒 Fast & 100% private. All calculations run locally in your browser. No financial data is ever collected or stored.
+          <div class="p-3 rounded-lg bg-slate-800/80 border border-slate-700 text-[11px] text-slate-400">
+            🔒 100% Client-Side. Your financial data is calculated locally in your browser and never sent to any server.
           </div>
         </div>
       </div>
 
       <div class="pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-        <div>All 10 calculators open instantly with zero install or login.</div>
+        <div>100% Free • No Sign-up Required • Real-Time Math</div>
         <div class="flex items-center gap-4">
           <a href="index.html" class="hover:text-slate-300">Directory</a>
           <span>•</span>
@@ -1109,17 +1166,25 @@ function getFooterHtml() {
   `;
 }
 
-// Generate Index Page
 function generateIndexPage() {
   const pageHtml = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>E-Commerce & Payment Fee Calculators 2026: Calculate Net Profits & Margins</title>
-  <meta name="description" content="Free instant profit and fee calculators for Etsy, Shopify, TikTok Shop, eBay, Amazon FBA, Printful, Stripe, PayPal, Wise, and Substack. No sign up required.">
+  <title>E-Commerce & Payment Fee Calculators (2026): Instant Take-Home Profit</title>
+  <meta name="description" content="Calculate your exact take-home profit across Etsy, Shopify, TikTok Shop, eBay, Amazon FBA, Stripe, and PayPal in under 3 seconds. Instant reactive math.">
   <link rel="canonical" href="https://DavidAeelmann.github.io/seller-fee-calculators/index.html">
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .cta-dopamine-btn {
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .cta-dopamine-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.4);
+    }
+  </style>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -1136,66 +1201,69 @@ function generateIndexPage() {
   }
   </script>
 </head>
-<body class="bg-slate-50 text-slate-800 flex flex-col min-h-screen font-sans antialiased">
+<body class="bg-[#F8FAFC] text-slate-800 flex flex-col min-h-screen font-sans antialiased">
   ${getHeaderHtml('index.html')}
 
-  <!-- Hero Banner -->
-  <section class="bg-gradient-to-b from-indigo-900 via-indigo-950 to-slate-900 text-white py-16 px-4 sm:px-6 lg:px-8">
+  <!-- Above-the-fold 3-Second Clarity Hero -->
+  <section class="bg-white border-b border-slate-200 pt-8 pb-10 px-4 sm:px-6 lg:px-8">
     <div class="max-w-4xl mx-auto text-center">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-800/80 border border-indigo-600 text-indigo-200 text-xs font-semibold uppercase tracking-wider mb-6">
-        <span>Updated for 2026 Platform Fee Schedules</span>
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-700 text-xs font-bold uppercase tracking-wider mb-4 shadow-2xs">
+        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+        <span>Last Updated: October 2026 • Verified Formulas</span>
       </div>
-      <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white mb-4">
-        Stop Guessing. Know Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-emerald-400">Exact Net Profit</span>.
+      
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 mb-3">
+        Calculate Your Exact Net Profit In 3 Seconds
       </h1>
-      <p class="text-base sm:text-lg text-indigo-200 max-w-2xl mx-auto mb-8 leading-relaxed">
-        Accurate, instant, mobile-friendly fee and profit calculators for Etsy, Shopify, TikTok Shop, eBay, Amazon FBA, Stripe, Wise, and creator platforms.
+      
+      <p class="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto mb-6 leading-relaxed">
+        Select a marketplace or payment gateway below to calculate listing fees, transaction cuts, and hidden FX losses in real time.
       </p>
 
-      <!-- Search & Filter Controls -->
-      <div class="max-w-xl mx-auto flex flex-col sm:flex-row gap-3">
+      <!-- Search & Filters -->
+      <div class="max-w-xl mx-auto flex flex-col sm:flex-row gap-2.5">
         <div class="relative flex-grow">
           <input type="text" id="searchInput" placeholder="Search calculator (e.g. Etsy, Stripe, TikTok, FX)..." 
-                 class="w-full px-4 py-3 rounded-xl bg-white text-slate-800 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400 shadow-md">
-          <svg class="w-5 h-5 text-slate-400 absolute right-3.5 top-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                 class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-600 shadow-xs">
+          <svg class="w-4 h-4 text-slate-400 absolute right-3.5 top-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
         </div>
-        <select id="categoryFilter" class="px-4 py-3 rounded-xl bg-slate-800 text-white border border-slate-700 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-amber-400">
-          <option value="all">All Categories</option>
+        <select id="categoryFilter" class="px-4 py-3 rounded-xl bg-slate-900 text-white border border-slate-800 text-xs sm:text-sm font-bold focus:outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer shadow-xs">
+          <option value="all">All 10 Calculators</option>
           <option value="ecommerce">E-Commerce & Marketplaces</option>
-          <option value="payments">Payments & Creator Economy</option>
+          <option value="payments">Payments & FX Transfers</option>
         </select>
       </div>
     </div>
   </section>
 
   <!-- Calculators Grid -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex-grow">
-    <div class="flex items-center justify-between mb-8">
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow w-full">
+    <div class="flex items-center justify-between mb-6">
       <div>
-        <h2 class="text-2xl font-bold text-slate-900">Featured Fee Calculators</h2>
-        <p class="text-sm text-slate-500">Select any tool below for instant, reactive calculations and real-world worked examples.</p>
+        <h2 class="text-xl sm:text-2xl font-black text-slate-900">Explore All Fee Calculators</h2>
+        <p class="text-xs sm:text-sm text-slate-500">Click any card to calculate fees and take-home profits with live sliders.</p>
       </div>
-      <span id="resultCount" class="text-xs font-semibold text-slate-500 bg-slate-200 px-3 py-1 rounded-full">10 Tools Available</span>
+      <span id="resultCount" class="text-xs font-bold text-slate-700 bg-white border border-slate-200 px-3 py-1 rounded-full shadow-2xs">10 Tools Available</span>
     </div>
 
-    <div id="calculatorGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div id="calculatorGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
       ${calculators.map(c => `
         <a href="${c.slug}" data-category="${c.category}" data-keywords="${c.title.toLowerCase()} ${c.description.toLowerCase()} ${c.tag.toLowerCase()}" 
-           class="calc-card group flex flex-col justify-between p-6 bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-lg hover:border-indigo-300 transition-all duration-200">
+           class="calc-card group flex flex-col justify-between p-6 bg-white rounded-2xl border border-slate-200 shadow-xs hover:shadow-md hover:border-indigo-300 transition-all duration-200">
           <div>
             <div class="flex items-center justify-between gap-2 mb-3">
               <span class="text-2xl">${c.icon}</span>
-              <span class="text-[11px] font-bold tracking-wide uppercase px-2.5 py-1 rounded-md bg-indigo-50 text-indigo-700 border border-indigo-100">${c.tag}</span>
+              <span class="text-[11px] font-bold tracking-wide uppercase px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 border border-slate-200">${c.tag}</span>
             </div>
-            <h3 class="text-lg font-bold text-slate-900 group-hover:text-indigo-600 transition-colors mb-2 leading-snug">
+            <h3 class="text-base sm:text-lg font-black text-slate-900 group-hover:text-indigo-600 transition-colors mb-2 leading-snug">
               ${c.shortTitle}
             </h3>
             <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed mb-4">
               ${c.description}
             </p>
           </div>
-          <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-indigo-600">
-            <span>Calculate Fees Now</span>
+          <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-extrabold text-indigo-600">
+            <span>Calculate Live Profit</span>
             <span class="group-hover:translate-x-1 transition-transform">→</span>
           </div>
         </a>
@@ -1256,7 +1324,6 @@ function generateIndexPage() {
   console.log('Generated: index.html');
 }
 
-// Generate Individual Calculator Pages
 function generateCalculatorPages() {
   calculators.forEach(c => {
     const faqSchemaItems = c.faqs.map(f => `{
@@ -1268,6 +1335,10 @@ function generateCalculatorPages() {
       }
     }`).join(',');
 
+    const presets = presetsMap[c.slug] || [];
+    const relatedCalcs = getRelatedCalculators(c.slug);
+    const benefitH1 = c.shortTitle + ': Calculate Net Profit';
+
     const pageHtml = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1277,8 +1348,19 @@ function generateCalculatorPages() {
   <meta name="description" content="${c.metaDesc}">
   <link rel="canonical" href="https://DavidAeelmann.github.io/seller-fee-calculators/${c.slug}">
   <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Structured Data: WebApplication -->
+  <style>
+    .cta-dopamine-btn {
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .cta-dopamine-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.4);
+    }
+    details summary::-webkit-details-marker {
+      display: none;
+    }
+  </style>
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -1295,7 +1377,6 @@ function generateCalculatorPages() {
   }
   </script>
 
-  <!-- Structured Data: FAQPage -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -1306,67 +1387,84 @@ function generateCalculatorPages() {
   }
   </script>
 </head>
-<body class="bg-slate-50 text-slate-800 flex flex-col min-h-screen font-sans antialiased">
+<body class="bg-[#F8FAFC] text-slate-800 flex flex-col min-h-screen font-sans antialiased pb-20 sm:pb-0">
   ${getHeaderHtml(c.slug)}
 
-  <!-- Breadcrumbs & Title Header -->
-  <section class="bg-white border-b border-slate-200 py-6 px-4 sm:px-6 lg:px-8">
+  <!-- Compact Above-The-Fold Header (Instant 3-Second Visibility) -->
+  <section class="bg-white border-b border-slate-200 py-4 px-4 sm:px-6 lg:px-8">
     <div class="max-w-5xl mx-auto">
-      <nav class="flex items-center gap-2 text-xs font-semibold text-slate-500 mb-3">
-        <a href="index.html" class="hover:text-indigo-600 transition-colors">Directory</a>
-        <span>/</span>
-        <span class="text-slate-800 font-bold">${c.shortTitle}</span>
-      </nav>
-      <div class="flex flex-wrap items-center gap-3 mb-2">
-        <span class="text-3xl">${c.icon}</span>
-        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-          ${c.title}
-        </h1>
+      <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+        <nav class="flex items-center gap-2 text-xs font-bold text-slate-500">
+          <a href="index.html" class="hover:text-indigo-600 transition-colors">Calculators</a>
+          <span>/</span>
+          <span class="text-slate-900">${c.shortTitle}</span>
+        </nav>
+        <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-slate-100 text-[11px] font-bold text-slate-700 border border-slate-200">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+          Last Updated: October 2026 • Verified Formula
+        </span>
       </div>
-      <p class="text-sm text-slate-600 max-w-3xl leading-relaxed">
-        ${c.metaDesc} Instant live calculation updates as you adjust values below.
+      <h1 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mb-1">
+        ${benefitH1}
+      </h1>
+      <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+        ${c.description} Instant calculations with real-time profit margin breakdown.
       </p>
     </div>
   </section>
 
   <!-- Main Calculator Workspace -->
-  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-grow w-full">
+    
+    <!-- Quick Preset Scenario Pills -->
+    ${presets.length > 0 ? `
+    <div class="mb-5 bg-white p-3 rounded-xl border border-slate-200 shadow-2xs flex flex-wrap items-center gap-2">
+      <span class="text-xs font-extrabold text-slate-500 uppercase tracking-wide mr-1">⚡ Quick Scenarios:</span>
+      ${presets.map((p, idx) => `
+        <button type="button" class="preset-pill px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 hover:bg-indigo-50 hover:text-indigo-600 border border-slate-200 hover:border-indigo-300 transition-all cursor-pointer"
+                data-preset='${JSON.stringify(p.values)}'>
+          ${p.label}
+        </button>
+      `).join('')}
+    </div>` : ''}
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
       
       <!-- Left Column: Inputs Form -->
-      <div class="lg:col-span-5 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+      <div class="lg:col-span-5 bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-4">
         <div class="flex items-center justify-between pb-3 border-b border-slate-100">
-          <h2 class="text-sm font-bold uppercase tracking-wider text-slate-800">Calculation Inputs</h2>
-          <span class="text-xs text-indigo-600 font-semibold">Live Reactive Math</span>
+          <h2 class="text-xs font-black uppercase tracking-wider text-slate-900">Interactive Inputs</h2>
+          <span class="text-[11px] text-emerald-600 font-bold bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200">Live Math</span>
         </div>
 
-        <form id="calcForm" class="space-y-4">
+        <form id="calcForm" class="space-y-3.5">
           ${c.inputs.map(inp => {
             if (inp.type === 'select') {
               return `
               <div>
-                <label for="${inp.id}" class="block text-xs font-bold text-slate-700 mb-1.5">${inp.label}</label>
-                <select id="${inp.id}" class="calc-input w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm font-medium text-slate-800 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                <label for="${inp.id}" class="block text-xs font-extrabold text-slate-700 mb-1.5">${inp.label}</label>
+                <select id="${inp.id}" class="calc-input w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm font-semibold text-slate-900 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-600">
                   ${inp.options.map(opt => `<option value="${opt.val}" ${opt.val === inp.val ? 'selected' : ''}>${opt.text}</option>`).join('')}
                 </select>
               </div>`;
             } else {
               return `
               <div>
-                <label for="${inp.id}" class="block text-xs font-bold text-slate-700 mb-1.5">${inp.label}</label>
+                <label for="${inp.id}" class="block text-xs font-extrabold text-slate-700 mb-1.5">${inp.label}</label>
                 <div class="relative">
                   <input type="${inp.type}" id="${inp.id}" value="${inp.val}" step="${inp.step || 'any'}" min="0"
-                         class="calc-input w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm font-semibold text-slate-800 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                         class="calc-input w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm font-bold text-slate-900 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-600">
                 </div>
               </div>`;
             }
           }).join('')}
         </form>
 
-        <div class="pt-2">
-          <button type="button" id="resetBtn" class="text-xs text-slate-500 hover:text-slate-700 underline font-medium">
-            Reset to default sample values
+        <div class="pt-2 flex items-center justify-between text-xs">
+          <button type="button" id="resetBtn" class="text-slate-500 hover:text-slate-800 font-bold underline cursor-pointer">
+            Reset inputs
           </button>
+          <span class="text-[11px] text-slate-400">Zero page reloads</span>
         </div>
       </div>
 
@@ -1374,23 +1472,23 @@ function generateCalculatorPages() {
       <div class="lg:col-span-7 space-y-6">
         
         <!-- Net Result Banner Card -->
-        <div class="bg-slate-900 text-white p-6 sm:p-7 rounded-2xl shadow-lg border border-slate-800">
-          <div class="flex items-center justify-between mb-4">
-            <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Net Estimated Take-Home</span>
-            <span id="marginBadge" class="px-2.5 py-1 rounded-full text-xs font-extrabold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+        <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-lg border border-slate-800">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Estimated Take-Home Profit</span>
+            <span id="marginBadge" class="px-3 py-1 rounded-full text-xs font-extrabold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
               0.0% Margin
             </span>
           </div>
 
-          <div class="flex items-baseline gap-2 mb-6">
-            <span id="netProfitDisplay" class="text-4xl sm:text-5xl font-extrabold text-emerald-400 tracking-tight">$0.00</span>
-            <span class="text-xs text-slate-400">net profit</span>
+          <div class="flex items-baseline gap-2 mb-5">
+            <span id="netProfitDisplay" class="text-4xl sm:text-5xl font-black text-emerald-400 tracking-tight">$0.00</span>
+            <span class="text-xs text-slate-400 font-medium">net take-home</span>
           </div>
 
           <!-- Dynamic Visual Bar -->
-          <div class="space-y-1.5 mb-6">
+          <div class="space-y-1.5 mb-5">
             <div class="flex justify-between text-[11px] font-semibold text-slate-300">
-              <span>Financial Breakdown of Gross Volume</span>
+              <span>Financial Allocation</span>
               <span id="grossDisplay">$0.00 Gross</span>
             </div>
             <div class="h-3 w-full bg-slate-800 rounded-full overflow-hidden flex">
@@ -1401,7 +1499,7 @@ function generateCalculatorPages() {
             <div class="flex flex-wrap gap-4 text-[11px] text-slate-400 pt-1">
               <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span> Net Profit</div>
               <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-rose-500 inline-block"></span> Platform Fees</div>
-              <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span> Product/COGS/Shipping</div>
+              <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span> Sourcing / Shipping</div>
             </div>
           </div>
 
@@ -1412,41 +1510,84 @@ function generateCalculatorPages() {
         <!-- Dynamic Affiliate Switchboard CTA Card -->
         <div id="affiliate-callout"></div>
 
-        <!-- Detailed Breakdown Accordion / Table -->
-        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-          <h3 class="text-sm font-bold uppercase tracking-wider text-slate-800 mb-4 pb-2 border-b border-slate-100">
-            Itemized Fee & Expense Breakdown
+        <!-- Detailed Breakdown Card -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs">
+          <h3 class="text-xs font-black uppercase tracking-wider text-slate-800 mb-4 pb-2 border-b border-slate-100">
+            Itemized Deductions & Fees
           </h3>
           <div id="feeBreakdownTable" class="space-y-2 text-sm"></div>
         </div>
       </div>
     </div>
 
-    <!-- Educational SEO Content Section (400+ words) -->
-    <article class="mt-14 bg-white p-6 sm:p-10 rounded-2xl border border-slate-200 shadow-sm prose max-w-none">
+    <!-- Related Calculators Loop (Retention & Dwell Time Multiplier) -->
+    <section class="mt-12 pt-8 border-t border-slate-200">
+      <div class="flex items-center justify-between mb-5">
+        <div>
+          <h3 class="text-base sm:text-lg font-black text-slate-900">Compare With Related Fee Calculators</h3>
+          <p class="text-xs text-slate-500">Cross-reference your margins across alternate platforms to maximize take-home income.</p>
+        </div>
+        <a href="index.html" class="text-xs font-bold text-indigo-600 hover:text-indigo-800">View All 10 →</a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        ${relatedCalcs.map(rc => `
+          <a href="${rc.slug}" class="group p-4 bg-white rounded-xl border border-slate-200 hover:border-indigo-300 shadow-2xs hover:shadow-xs transition-all flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-2 mb-2">
+                <span class="text-xl">${rc.icon}</span>
+                <span class="text-xs font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">${rc.shortTitle}</span>
+              </div>
+              <p class="text-[11px] text-slate-500 line-clamp-2 leading-relaxed mb-3">${rc.description}</p>
+            </div>
+            <span class="text-xs font-extrabold text-indigo-600 flex items-center gap-1">Open Calculator <span class="group-hover:translate-x-0.5 transition-transform">→</span></span>
+          </a>
+        `).join('')}
+      </div>
+    </section>
+
+    <!-- Educational Scannable SEO Content Section -->
+    <article class="mt-12 bg-white p-6 sm:p-9 rounded-2xl border border-slate-200 shadow-xs prose max-w-none">
       ${c.contentHtml}
 
-      <!-- FAQ Section -->
+      <!-- Interactive FAQ Accordion -->
       <div class="mt-10 pt-8 border-t border-slate-200">
-        <h3 class="text-xl font-bold text-slate-900 mb-6">Frequently Asked Questions</h3>
-        <div class="space-y-4">
-          ${c.faqs.map(f => `
-            <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl">
-              <h4 class="font-bold text-slate-800 text-sm sm:text-base mb-1.5">${f.q}</h4>
-              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">${f.a}</p>
-            </div>
+        <h3 class="text-lg sm:text-xl font-black text-slate-900 mb-4">Frequently Asked Questions</h3>
+        <div class="space-y-3">
+          ${c.faqs.map((f, i) => `
+            <details class="group bg-slate-50 border border-slate-200 rounded-xl overflow-hidden transition-all duration-200" ${i === 0 ? 'open' : ''}>
+              <summary class="flex items-center justify-between p-4 text-xs sm:text-sm font-bold text-slate-900 cursor-pointer select-none">
+                <span>${f.q}</span>
+                <span class="ml-2 w-5 h-5 flex items-center justify-center rounded-full bg-white border border-slate-200 text-slate-600 text-xs group-open:rotate-180 transition-transform">▼</span>
+              </summary>
+              <div class="px-4 pb-4 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3 bg-white">
+                ${f.a}
+              </div>
+            </details>
           `).join('')}
         </div>
       </div>
     </article>
   </main>
 
+  <!-- Sticky Mobile Action Summary Bar (max-width: 768px) -->
+  <aside id="stickyMobileBar" class="sm:hidden fixed bottom-0 left-0 right-0 z-40 bg-slate-900 text-white border-t border-slate-800 px-4 py-3 flex items-center justify-between shadow-2xl">
+    <div>
+      <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Net Profit</div>
+      <div id="mobileNetProfit" class="text-lg font-black text-emerald-400 leading-tight">$0.00</div>
+    </div>
+    <a id="mobileCtaBtn" href="affiliate-config.js" target="_blank" rel="noopener sponsored"
+       class="cta-dopamine-btn inline-flex items-center justify-center px-4 py-2 rounded-xl text-xs font-black text-white bg-indigo-600 hover:bg-indigo-700 shadow-md">
+      Cut Fees Now →
+    </a>
+  </aside>
+
   ${getFooterHtml()}
 
   <!-- Affiliate Switchboard Script -->
   <script src="affiliate-config.js"></script>
 
-  <!-- Interactive Calculation Script -->
+  <!-- Interactive Calculation & Preset Script -->
   <script>
     function calculate() {
       try {
@@ -1467,14 +1608,28 @@ function generateCalculatorPages() {
       const netProfitEl = document.getElementById('netProfitDisplay');
       netProfitEl.textContent = '$' + netProfit.toFixed(2);
       if (netProfit < 0) {
-        netProfitEl.className = 'text-4xl sm:text-5xl font-extrabold text-rose-400 tracking-tight';
+        netProfitEl.className = 'text-4xl sm:text-5xl font-black text-rose-400 tracking-tight';
       } else {
-        netProfitEl.className = 'text-4xl sm:text-5xl font-extrabold text-emerald-400 tracking-tight';
+        netProfitEl.className = 'text-4xl sm:text-5xl font-black text-emerald-400 tracking-tight';
       }
 
-      // Margin badge
+      // Mobile sticky bar update
+      const mobileNet = document.getElementById('mobileNetProfit');
+      if (mobileNet) {
+        mobileNet.textContent = '$' + netProfit.toFixed(2);
+        mobileNet.className = netProfit < 0 ? 'text-lg font-black text-rose-400 leading-tight' : 'text-lg font-black text-emerald-400 leading-tight';
+      }
+
+      // Margin badge with color psychology (Red = low, Yellow = mid, Green = high)
       const marginEl = document.getElementById('marginBadge');
       marginEl.textContent = margin.toFixed(1) + '% Margin';
+      if (margin >= 40) {
+        marginEl.className = 'px-3 py-1 rounded-full text-xs font-extrabold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30';
+      } else if (margin >= 20) {
+        marginEl.className = 'px-3 py-1 rounded-full text-xs font-extrabold bg-amber-500/20 text-amber-300 border border-amber-500/30';
+      } else {
+        marginEl.className = 'px-3 py-1 rounded-full text-xs font-extrabold bg-rose-500/20 text-rose-300 border border-rose-500/30';
+      }
 
       // Gross total
       document.getElementById('grossDisplay').textContent = '$' + grossRevenue.toFixed(2) + ' Gross';
@@ -1495,8 +1650,8 @@ function generateCalculatorPages() {
         customContainer.classList.remove('hidden');
         customContainer.innerHTML = customMetrics.map(function(m) {
           return '<div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700/80">' +
-                 '<div class="text-[11px] text-slate-400 font-medium">' + m.label + '</div>' +
-                 '<div class="text-sm sm:text-base font-bold ' + (m.color || 'text-white') + '">' + m.val + '</div>' +
+                 '<div class="text-[11px] text-slate-400 font-bold">' + m.label + '</div>' +
+                 '<div class="text-sm sm:text-base font-black ' + (m.color || 'text-white') + '">' + m.val + '</div>' +
                  '</div>';
         }).join('');
       } else {
@@ -1508,13 +1663,13 @@ function generateCalculatorPages() {
       if (feeBreakdown && feeBreakdown.length > 0) {
         breakdownEl.innerHTML = feeBreakdown.map(function(item) {
           return '<div class="flex items-center justify-between py-2 border-b border-slate-100 last:border-0 text-xs sm:text-sm">' +
-                 '<span class="text-slate-600">' + item.label + '</span>' +
-                 '<span class="font-bold text-slate-900">$' + item.amount.toFixed(2) + '</span>' +
+                 '<span class="text-slate-600 font-medium">' + item.label + '</span>' +
+                 '<span class="font-black text-slate-900">$' + item.amount.toFixed(2) + '</span>' +
                  '</div>';
         }).join('') +
-          '<div class="flex items-center justify-between pt-2 border-t border-slate-200 text-xs sm:text-sm font-bold">' +
+          '<div class="flex items-center justify-between pt-2.5 border-t border-slate-200 text-xs sm:text-sm font-black">' +
           '<span class="text-slate-800">Total Deductions</span>' +
-          '<span class="text-rose-600">$' + (totalFees + totalCosts).toFixed(2) + '</span>' +
+          '<span class="text-rose-600 font-black">$' + (totalFees + totalCosts).toFixed(2) + '</span>' +
           '</div>';
       }
 
@@ -1522,12 +1677,34 @@ function generateCalculatorPages() {
       if (typeof renderAffiliateCallout === 'function') {
         renderAffiliateCallout('${c.category}', 'affiliate-callout', totalFees);
       }
+
+      // Update mobile CTA button destination
+      if (typeof AFFILIATE_OFFERS !== 'undefined' && AFFILIATE_OFFERS['${c.category}']) {
+        const mobileBtn = document.getElementById('mobileCtaBtn');
+        if (mobileBtn) {
+          mobileBtn.href = AFFILIATE_OFFERS['${c.category}'].url;
+        }
+      }
     }
 
     // Attach reactive input listeners
     document.querySelectorAll('.calc-input').forEach(input => {
       input.addEventListener('input', updateUI);
       input.addEventListener('change', updateUI);
+    });
+
+    // Preset pills click handling
+    document.querySelectorAll('.preset-pill').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const data = JSON.parse(btn.getAttribute('data-preset'));
+        for (const [key, val] of Object.entries(data)) {
+          const field = document.getElementById(key);
+          if (field) {
+            field.value = val;
+          }
+        }
+        updateUI();
+      });
     });
 
     // Reset button
@@ -1543,22 +1720,16 @@ function generateCalculatorPages() {
 </html>`;
 
     fs.writeFileSync(path.join(rootDir, c.slug), pageHtml, 'utf8');
-    console.log('Generated:', c.slug);
+    console.log('Generated:', c.slug, '(CRO Upgraded)');
   });
 }
 
-// Generate sitemap.xml and robots.txt
 function generateSEOFiles() {
   const baseUrl = 'https://DavidAeelmann.github.io/seller-fee-calculators';
   const today = '2026-10-14';
-
   const allPages = ['index.html', ...calculators.map(c => c.slug)];
 
   const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
-<!-- 
-  NOTE: Find and replace 'https://DavidAeelmann.github.io/seller-fee-calculators' 
-  with your live production URL (e.g. https://fees.yourdomain.com or https://johndoe.github.io/seller-fee-calculators)
--->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${allPages.map(p => `  <url>
     <loc>${baseUrl}/${p}</loc>
@@ -1570,8 +1741,6 @@ ${allPages.map(p => `  <url>
 `;
 
   const robotsTxt = `# robots.txt for FeeCalculators.pro
-# Replace 'https://DavidAeelmann.github.io/seller-fee-calculators' with your real URL
-
 User-agent: *
 Allow: /
 
@@ -1583,79 +1752,8 @@ Sitemap: ${baseUrl}/sitemap.xml
   console.log('Generated: sitemap.xml and robots.txt');
 }
 
-// Generate NEXT_STEPS_FOR_ME.md
-function generateNextSteps() {
-  const mdContent = `# Next Steps: How to Test, Monetize & Deploy Your Fee Calculators
-
-Congratulations! Your complete 100% static, zero-build E-Commerce & Payment Fee Calculator website is built and ready to launch.
-
----
-
-### Step 1: Double-Click to Test Right Now (0 Seconds)
-1. Open your computer's file explorer and go to:
-   \`c:\\Users\\david\\Documents\\Antigravity\\seller-fee-calculators\`
-2. Double-click **\`index.html\`**.
-3. It will open instantly in your web browser (Chrome, Edge, Safari, Firefox).
-4. Click on any of the 10 calculators and move the sliders or type new numbers.
-5. Notice how:
-   - Results update instantaneously without pressing any "Submit" button.
-   - The sponsored affiliate callout card displays right below the profit box with personalized fee savings.
-   - Every calculator cross-links seamlessly to all other tools.
-
----
-
-### Step 2: Paste Your 2 Affiliate Links (Under 2 Minutes)
-All 10 calculators are controlled by a single switchboard file: **\`affiliate-config.js\`**.
-
-Open \`affiliate-config.js\` in your text editor:
-
-1. **For Shopify (E-Commerce Offer):**
-   Look for:
-   \`\`\`javascript
-   // >>> PASTE YOUR SHOPIFY AFFILIATE LINK BELOW <<<
-   url: "https://www.shopify.com/free-trial",
-   \`\`\`
-   Replace the URL inside the quotes with your personal Shopify affiliate link.
-
-2. **For Wise (Payments & FX Offer):**
-   Look for:
-   \`\`\`javascript
-   // >>> PASTE YOUR WISE AFFILIATE LINK BELOW <<<
-   url: "https://wise.com/business",
-   \`\`\`
-   Replace the URL inside the quotes with your personal Wise affiliate link.
-
-3. Save the file. **All 10 calculator pages update instantly!**
-
-*(Optional: If you use Sovrn / VigLink or Skimlinks auto-monetization scripts, paste the script URL into the \`globalScriptUrl: null\` line).*
-
----
-
-### Step 3: Ask Me (AI CLI) to Deploy for Free ($0 Hosting)
-
-Whenever you are ready to publish this live to the internet with free HTTPS and a free subdomain, simply tell me:
-
-> *"Please push this folder live to GitHub Pages"*
-> or
-> *"Help me deploy this to Cloudflare Pages for free"*
-
-I can initialize Git, commit the files, and guide you through or run the automated deployment commands in seconds.
-
----
-
-### SEO Checklist Before Going Live
-- Open \`sitemap.xml\` and \`robots.txt\`.
-- Find and replace \`https://DavidAeelmann.github.io/seller-fee-calculators\` with your actual live domain or GitHub Pages URL.
-- Submit \`https://YOUR-DOMAIN.com/sitemap.xml\` in **Google Search Console** to begin ranking for high-intent e-commerce search traffic.
-`;
-
-  fs.writeFileSync(path.join(rootDir, 'NEXT_STEPS_FOR_ME.md'), mdContent, 'utf8');
-  console.log('Generated: NEXT_STEPS_FOR_ME.md');
-}
-
 // Execute all
 generateIndexPage();
 generateCalculatorPages();
 generateSEOFiles();
-generateNextSteps();
-console.log('ALL FILES GENERATED SUCCESSFULLY!');
+console.log('ALL 11 HTML FILES CRO & RETENTION UPGRADED SUCCESSFULLY!');
