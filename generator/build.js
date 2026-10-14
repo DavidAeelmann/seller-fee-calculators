@@ -1187,6 +1187,7 @@ function generateIndexPage() {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>E-Commerce & Payment Fee Calculators (2026): Instant Take-Home Profit</title>
   <meta name="description" content="Calculate your exact take-home profit across Etsy, Shopify, TikTok Shop, eBay, Amazon FBA, Stripe, and PayPal in under 3 seconds. Instant reactive math.">
+  <meta name='impact-site-verification' value='c1a85274-7d31-49df-a226-7c6bd3d9288d'>
   <link rel="canonical" href="https://DavidAeelmann.github.io/seller-fee-calculators/index.html">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
@@ -1359,6 +1360,7 @@ function generateCalculatorPages() {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${c.title}</title>
   <meta name="description" content="${c.metaDesc}">
+  <meta name='impact-site-verification' value='c1a85274-7d31-49df-a226-7c6bd3d9288d'>
   <link rel="canonical" href="https://DavidAeelmann.github.io/seller-fee-calculators/${c.slug}">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
