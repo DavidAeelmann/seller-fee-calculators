@@ -175,11 +175,17 @@ const calculators = [
         grossRevenue,
         headlineTitle: difference >= 0 ? 'Extra Profit with Shopify' : 'Etsy Advantage at this Volume',
         subLabel: difference >= 0 ? 'more monthly take-home vs Etsy' : 'Shopify subscription is higher',
-        prefix: '+$',
+        prefix: (difference >= 0 ? '+$' : '-$'),
+        marginBadgeText: (grossRevenue > 0 ? (Math.abs(difference) / grossRevenue * 100).toFixed(1) + '% Difference' : null),
         totalFees: totalShopifyFees,
         totalCosts: totalCogs,
         netProfit: Math.abs(difference),
         margin: grossRevenue > 0 ? (shopifyProfit / grossRevenue) * 100 : 0,
+        barAllocation: {
+          profit: shopifyProfit,
+          fees: totalShopifyFees,
+          costs: totalCogs
+        },
         customMetrics: [
           { label: 'Etsy Monthly Take-Home', val: '$' + etsyProfit.toFixed(2), color: 'text-amber-400' },
           { label: 'Shopify Monthly Take-Home', val: '$' + shopifyProfit.toFixed(2), color: 'text-emerald-400' },
@@ -879,10 +885,16 @@ const calculators = [
         headlineTitle: 'Extra Money Kept with Wise',
         subLabel: 'saved vs PayPal fees & FX spread markups',
         prefix: '+$',
+        marginBadgeText: (invoice > 0 ? (moneySavedWithWise / invoice * 100).toFixed(1) + '% Saved' : null),
         totalFees: totalWiseLoss,
         totalCosts: 0,
         netProfit: moneySavedWithWise,
         margin: invoice > 0 ? (wiseTakeHome / invoice) * 100 : 0,
+        barAllocation: {
+          profit: wiseTakeHome,
+          fees: totalWiseLoss,
+          costs: 0
+        },
         customMetrics: [
           { label: 'Lost to PayPal Fees & FX', val: '$' + totalPayPalLoss.toFixed(2), color: 'text-rose-400' },
           { label: 'Lost to Wise Transparent Fee', val: '$' + totalWiseLoss.toFixed(2), color: 'text-emerald-400' },
@@ -970,17 +982,24 @@ const calculators = [
 
       return {
         grossRevenue,
-        headlineTitle: 'Substack Monthly Net Income',
-        subLabel: 'take-home pay after platform & payment processing',
+        headlineTitle: netDifference >= 0 ? 'Extra Profit with Substack' : 'Extra Profit with Patreon',
+        subLabel: netDifference >= 0 ? 'more monthly creator earnings vs Patreon' : 'more monthly creator earnings vs Substack',
+        prefix: (netDifference >= 0 ? '+$' : '-$'),
+        marginBadgeText: (grossRevenue > 0 ? (Math.abs(netDifference) / grossRevenue * 100).toFixed(1) + '% Difference' : null),
         totalFees: totalSubstackDeductions,
         totalCosts: 0,
-        netProfit: substackNet,
+        netProfit: Math.abs(netDifference),
         margin: grossRevenue > 0 ? (substackNet / grossRevenue) * 100 : 0,
+        barAllocation: {
+          profit: substackNet,
+          fees: totalSubstackDeductions,
+          costs: 0
+        },
         customMetrics: [
           { label: 'Substack Monthly Take-Home', val: '$' + substackNet.toFixed(2), color: 'text-emerald-400' },
           { label: 'Patreon Monthly Take-Home', val: '$' + patreonNet.toFixed(2), color: 'text-amber-400' },
-          { label: 'Substack Platform + Processing Fees', val: '$' + totalSubstackDeductions.toFixed(2), color: 'text-indigo-400' },
-          { label: 'Patreon Total Fees (' + (patreonRate * 100) + '% tier)', val: '$' + totalPatreonDeductions.toFixed(2), color: 'text-rose-400' }
+          { label: 'Substack Total Fees (10% + 2.9% + 30¢)', val: '$' + totalSubstackDeductions.toFixed(2), color: 'text-indigo-400' },
+          { label: 'Patreon Total Fees (' + (patreonRate * 100) + '% + Processing)', val: '$' + totalPatreonDeductions.toFixed(2), color: 'text-rose-400' }
         ],
         feeBreakdown: [
           { label: 'Substack Flat 10% Platform Commission', amount: substackPlatformFee },
@@ -1644,13 +1663,18 @@ function generateCalculatorPages() {
 
       // Margin badge with color psychology (Red = low, Yellow = mid, Green = high)
       const marginEl = document.getElementById('marginBadge');
-      marginEl.textContent = margin.toFixed(1) + '% Margin';
-      if (margin >= 40) {
+      if (result.marginBadgeText) {
+        marginEl.textContent = result.marginBadgeText;
         marginEl.className = 'px-3 py-1 rounded-full text-xs font-extrabold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30';
-      } else if (margin >= 20) {
-        marginEl.className = 'px-3 py-1 rounded-full text-xs font-extrabold bg-amber-500/20 text-amber-300 border border-amber-500/30';
       } else {
-        marginEl.className = 'px-3 py-1 rounded-full text-xs font-extrabold bg-rose-500/20 text-rose-300 border border-rose-500/30';
+        marginEl.textContent = margin.toFixed(1) + '% Margin';
+        if (margin >= 40) {
+          marginEl.className = 'px-3 py-1 rounded-full text-xs font-extrabold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30';
+        } else if (margin >= 20) {
+          marginEl.className = 'px-3 py-1 rounded-full text-xs font-extrabold bg-amber-500/20 text-amber-300 border border-amber-500/30';
+        } else {
+          marginEl.className = 'px-3 py-1 rounded-full text-xs font-extrabold bg-rose-500/20 text-rose-300 border border-rose-500/30';
+        }
       }
 
       // Gross total
@@ -1658,9 +1682,13 @@ function generateCalculatorPages() {
 
       // Progress bars
       const safeGross = grossRevenue > 0 ? grossRevenue : (totalFees + totalCosts + Math.abs(netProfit)) || 1;
-      const profitPct = Math.max(0, Math.min(100, (netProfit / safeGross) * 100));
-      const feesPct = Math.max(0, Math.min(100, (totalFees / safeGross) * 100));
-      const costsPct = Math.max(0, Math.min(100, (totalCosts / safeGross) * 100));
+      const allocProfit = (result.barAllocation && typeof result.barAllocation.profit !== 'undefined') ? result.barAllocation.profit : netProfit;
+      const allocFees = (result.barAllocation && typeof result.barAllocation.fees !== 'undefined') ? result.barAllocation.fees : totalFees;
+      const allocCosts = (result.barAllocation && typeof result.barAllocation.costs !== 'undefined') ? result.barAllocation.costs : totalCosts;
+
+      const profitPct = Math.max(0, Math.min(100, (allocProfit / safeGross) * 100));
+      const feesPct = Math.max(0, Math.min(100, (allocFees / safeGross) * 100));
+      const costsPct = Math.max(0, Math.min(100, (allocCosts / safeGross) * 100));
 
       document.getElementById('barProfit').style.width = profitPct + '%';
       document.getElementById('barFees').style.width = feesPct + '%';
