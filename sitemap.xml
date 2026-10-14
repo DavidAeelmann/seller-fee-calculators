@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  NOTE: Find and replace 'https://DavidAeelmann.github.io/seller-fee-calculators' 
+  with your live production URL (e.g. https://fees.yourdomain.com or https://johndoe.github.io/seller-fee-calculators)
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://DavidAeelmann.github.io/seller-fee-calculators/index.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://DavidAeelmann.github.io/seller-fee-calculators/etsy-fee-calculator.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://DavidAeelmann.github.io/seller-fee-calculators/shopify-vs-etsy-calculator.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://DavidAeelmann.github.io/seller-fee-calculators/tiktok-shop-fee-calculator.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://DavidAeelmann.github.io/seller-fee-calculators/ebay-final-value-calculator.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://DavidAeelmann.github.io/seller-fee-calculators/printful-dropshipping-calculator.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://DavidAeelmann.github.io/seller-fee-calculators/amazon-fba-margin-calculator.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://DavidAeelmann.github.io/seller-fee-calculators/stripe-fee-calculator.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://DavidAeelmann.github.io/seller-fee-calculators/paypal-international-calculator.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://DavidAeelmann.github.io/seller-fee-calculators/wise-vs-paypal-calculator.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://DavidAeelmann.github.io/seller-fee-calculators/patreon-vs-substack-calculator.html</loc>
+    <lastmod>2026-10-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>

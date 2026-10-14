@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stripe Fee Calculator 2026: Domestic, International & "How Much to Charge"</title>
+  <meta name="description" content="Accurate Stripe fee calculator for 2.9% + $0.30 domestic, international cards, billing, and reverse calculation: how much to charge to receive exactly $X.">
+  <link rel="canonical" href="https://DavidAeelmann.github.io/seller-fee-calculators/stripe-fee-calculator.html">
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Structured Data: WebApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Stripe Fee Calculator 2026: Domestic, International & \"How Much to Charge\"",
+    "description": "Accurate Stripe fee calculator for 2.9% + $0.30 domestic, international cards, billing, and reverse calculation: how much to charge to receive exactly $X.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "All",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
+
+  <!-- Structured Data: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+      "@type": "Question",
+      "name": "What is Stripe's standard fee in the United States?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Stripe's standard pricing in the US is 2.9% plus $0.30 per successful credit or debit card charge."
+      }
+    },{
+      "@type": "Question",
+      "name": "Does Stripe refund processing fees when I issue a customer refund?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Stripe retains the original transaction fee (both the percentage and fixed fee) when you refund a customer payment."
+      }
+    },{
+      "@type": "Question",
+      "name": "How much extra does Stripe charge for international cards?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Stripe adds a 1.5% fee for international cards, plus an additional 1% if currency conversion is required."
+      }
+    },{
+      "@type": "Question",
+      "name": "How can I avoid Stripe international currency conversion fees?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "By connecting a Wise Business multi-currency account, you can receive foreign funds natively without suffering Stripe's automatic currency conversion markup."
+      }
+    }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-800 flex flex-col min-h-screen font-sans antialiased">
+  
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="index.html" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-bold text-xl shadow-sm group-hover:bg-indigo-700 transition-colors">
+            ⚡
+          </div>
+          <div>
+            <span class="text-base sm:text-lg font-extrabold text-slate-900 tracking-tight">FeeCalculators<span class="text-indigo-600">.pro</span></span>
+            <span class="hidden sm:block text-[11px] text-slate-400 font-medium leading-none">E-Commerce & Payment Profit Suite</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden lg:flex items-center gap-1 text-xs font-semibold text-slate-600">
+          <a href="etsy-fee-calculator.html" class="px-2.5 py-1.5 rounded-lg hover:text-indigo-600 hover:bg-slate-50 transition-colors ">Etsy</a>
+          <a href="shopify-vs-etsy-calculator.html" class="px-2.5 py-1.5 rounded-lg hover:text-indigo-600 hover:bg-slate-50 transition-colors ">Shopify vs Etsy</a>
+          <a href="tiktok-shop-fee-calculator.html" class="px-2.5 py-1.5 rounded-lg hover:text-indigo-600 hover:bg-slate-50 transition-colors ">TikTok</a>
+          <a href="ebay-final-value-calculator.html" class="px-2.5 py-1.5 rounded-lg hover:text-indigo-600 hover:bg-slate-50 transition-colors ">eBay</a>
+          <a href="amazon-fba-margin-calculator.html" class="px-2.5 py-1.5 rounded-lg hover:text-indigo-600 hover:bg-slate-50 transition-colors ">Amazon FBA</a>
+          <a href="stripe-fee-calculator.html" class="px-2.5 py-1.5 rounded-lg hover:text-indigo-600 hover:bg-slate-50 transition-colors text-indigo-600 bg-indigo-50 font-bold">Stripe</a>
+          <a href="wise-vs-paypal-calculator.html" class="px-2.5 py-1.5 rounded-lg hover:text-indigo-600 hover:bg-slate-50 transition-colors ">Wise vs PayPal</a>
+        </nav>
+
+        <div class="flex items-center gap-2">
+          <a href="index.html" class="inline-flex items-center gap-1.5 text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 px-3 py-2 rounded-xl transition-colors">
+            <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            <span>All 10 Tools</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+  
+
+  <!-- Breadcrumbs & Title Header -->
+  <section class="bg-white border-b border-slate-200 py-6 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-5xl mx-auto">
+      <nav class="flex items-center gap-2 text-xs font-semibold text-slate-500 mb-3">
+        <a href="index.html" class="hover:text-indigo-600 transition-colors">Directory</a>
+        <span>/</span>
+        <span class="text-slate-800 font-bold">Stripe Fee Calculator</span>
+      </nav>
+      <div class="flex flex-wrap items-center gap-3 mb-2">
+        <span class="text-3xl">💳</span>
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+          Stripe Fee Calculator 2026: Domestic, International & "How Much to Charge"
+        </h1>
+      </div>
+      <p class="text-sm text-slate-600 max-w-3xl leading-relaxed">
+        Accurate Stripe fee calculator for 2.9% + $0.30 domestic, international cards, billing, and reverse calculation: how much to charge to receive exactly $X. Instant live calculation updates as you adjust values below.
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Calculator Workspace -->
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Left Column: Inputs Form -->
+      <div class="lg:col-span-5 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+        <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+          <h2 class="text-sm font-bold uppercase tracking-wider text-slate-800">Calculation Inputs</h2>
+          <span class="text-xs text-indigo-600 font-semibold">Live Reactive Math</span>
+        </div>
+
+        <form id="calcForm" class="space-y-4">
+          
+              <div>
+                <label for="targetAmount" class="block text-xs font-bold text-slate-700 mb-1.5">Amount You Want to Charge or Receive ($)</label>
+                <div class="relative">
+                  <input type="number" id="targetAmount" value="100.00" step="5.00" min="0"
+                         class="calc-input w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm font-semibold text-slate-800 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                </div>
+              </div>
+              <div>
+                <label for="calcMode" class="block text-xs font-bold text-slate-700 mb-1.5">Calculation Direction</label>
+                <select id="calcMode" class="calc-input w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm font-medium text-slate-800 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                  <option value="forward" selected>I am charging this amount (Calculate Fees & Net)</option><option value="reverse" >I need to receive this exact amount (Calculate What to Invoice)</option>
+                </select>
+              </div>
+              <div>
+                <label for="cardOrigin" class="block text-xs font-bold text-slate-700 mb-1.5">Card Type & Location</label>
+                <select id="cardOrigin" class="calc-input w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm font-medium text-slate-800 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                  <option value="domestic" selected>Standard US Domestic Card (2.9% + 30¢)</option><option value="international" >International Card (+1.5% = 4.4% + 30¢)</option><option value="international_fx" >International + Currency Conversion (+2.5% = 5.4% + 30¢)</option>
+                </select>
+              </div>
+              <div>
+                <label for="stripeBilling" class="block text-xs font-bold text-slate-700 mb-1.5">Stripe Billing / Invoicing Add-on</label>
+                <select id="stripeBilling" class="calc-input w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm font-medium text-slate-800 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                  <option value="0" selected>Standard Checkout (0%)</option><option value="0.005" >Stripe Invoicing / Recurring Billing (+0.5%)</option>
+                </select>
+              </div>
+        </form>
+
+        <div class="pt-2">
+          <button type="button" id="resetBtn" class="text-xs text-slate-500 hover:text-slate-700 underline font-medium">
+            Reset to default sample values
+          </button>
+        </div>
+      </div>
+
+      <!-- Right Column: Results & Visual Breakdown -->
+      <div class="lg:col-span-7 space-y-6">
+        
+        <!-- Net Result Banner Card -->
+        <div class="bg-slate-900 text-white p-6 sm:p-7 rounded-2xl shadow-lg border border-slate-800">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Net Estimated Take-Home</span>
+            <span id="marginBadge" class="px-2.5 py-1 rounded-full text-xs font-extrabold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+              0.0% Margin
+            </span>
+          </div>
+
+          <div class="flex items-baseline gap-2 mb-6">
+            <span id="netProfitDisplay" class="text-4xl sm:text-5xl font-extrabold text-emerald-400 tracking-tight">$0.00</span>
+            <span class="text-xs text-slate-400">net profit</span>
+          </div>
+
+          <!-- Dynamic Visual Bar -->
+          <div class="space-y-1.5 mb-6">
+            <div class="flex justify-between text-[11px] font-semibold text-slate-300">
+              <span>Financial Breakdown of Gross Volume</span>
+              <span id="grossDisplay">$0.00 Gross</span>
+            </div>
+            <div class="h-3 w-full bg-slate-800 rounded-full overflow-hidden flex">
+              <div id="barProfit" class="h-full bg-emerald-500 transition-all duration-300" style="width: 50%"></div>
+              <div id="barFees" class="h-full bg-rose-500 transition-all duration-300" style="width: 25%"></div>
+              <div id="barCosts" class="h-full bg-amber-500 transition-all duration-300" style="width: 25%"></div>
+            </div>
+            <div class="flex flex-wrap gap-4 text-[11px] text-slate-400 pt-1">
+              <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span> Net Profit</div>
+              <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-rose-500 inline-block"></span> Platform Fees</div>
+              <div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span> Product/COGS/Shipping</div>
+            </div>
+          </div>
+
+          <!-- Custom Additional Metrics if any -->
+          <div id="customMetricsContainer" class="grid grid-cols-2 gap-3 pt-4 border-t border-slate-800"></div>
+        </div>
+
+        <!-- Dynamic Affiliate Switchboard CTA Card -->
+        <div id="affiliate-callout"></div>
+
+        <!-- Detailed Breakdown Accordion / Table -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+          <h3 class="text-sm font-bold uppercase tracking-wider text-slate-800 mb-4 pb-2 border-b border-slate-100">
+            Itemized Fee & Expense Breakdown
+          </h3>
+          <div id="feeBreakdownTable" class="space-y-2 text-sm"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Educational SEO Content Section (400+ words) -->
+    <article class="mt-14 bg-white p-6 sm:p-10 rounded-2xl border border-slate-200 shadow-sm prose max-w-none">
+      
+      <h2 class="text-2xl font-bold text-slate-900 mb-4">Stripe Pricing & Reverse Fee Formula</h2>
+      <p class="text-slate-600 mb-4">Stripe powers checkout flows across millions of websites. While domestic transactions are straightforward at <strong>2.9% + $0.30</strong>, accepting international cards or multi-currency payments adds incremental percentage markups that reduce your net payout.</p>
+
+      <div class="grid md:grid-cols-3 gap-4 mb-8">
+        <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl">
+          <h3 class="font-bold text-slate-800 text-sm mb-1">Domestic Cards</h3>
+          <p class="text-xs text-slate-600">2.9% + $0.30 per successful card charge for standard US-issued Visa, Mastercard, American Express, and Discover cards.</p>
+        </div>
+        <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl">
+          <h3 class="font-bold text-slate-800 text-sm mb-1">Cross-Border Cards</h3>
+          <p class="text-xs text-slate-600">Cards issued outside your Stripe country incur an additional <strong>+1.5% fee</strong> (totaling 4.4% + $0.30).</p>
+        </div>
+        <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl">
+          <h3 class="font-bold text-slate-800 text-sm mb-1">Currency Conversion</h3>
+          <p class="text-xs text-slate-600">If conversion is required, Stripe assesses an additional <strong>1% currency conversion fee</strong> on top of card rates.</p>
+        </div>
+      </div>
+
+      <h3 class="text-xl font-bold text-slate-900 mb-3">Reverse Calculation: How to Receive Exactly $X</h3>
+      <p class="text-slate-600 mb-3">When invoicing a client for $1,000, simply adding 2.9% ($29) to the invoice ($1,029) leaves you short, because Stripe will deduct 2.9% from the new $1,029 total! To receive <em>exactly</em> $1,000, use the mathematical reverse formula:</p>
+      <div class="p-4 bg-slate-100 rounded-lg text-sm font-mono text-slate-800 mb-6">
+        Invoice Amount = (Desired Net + $0.30) / (1 - 0.029)<br>
+        Invoice Amount = ($1,000.30) / 0.971 = <strong>$1,030.18</strong>
+      </div>
+    
+
+      <!-- FAQ Section -->
+      <div class="mt-10 pt-8 border-t border-slate-200">
+        <h3 class="text-xl font-bold text-slate-900 mb-6">Frequently Asked Questions</h3>
+        <div class="space-y-4">
+          
+            <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl">
+              <h4 class="font-bold text-slate-800 text-sm sm:text-base mb-1.5">What is Stripe's standard fee in the United States?</h4>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">Stripe's standard pricing in the US is 2.9% plus $0.30 per successful credit or debit card charge.</p>
+            </div>
+          
+            <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl">
+              <h4 class="font-bold text-slate-800 text-sm sm:text-base mb-1.5">Does Stripe refund processing fees when I issue a customer refund?</h4>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">No. Stripe retains the original transaction fee (both the percentage and fixed fee) when you refund a customer payment.</p>
+            </div>
+          
+            <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl">
+              <h4 class="font-bold text-slate-800 text-sm sm:text-base mb-1.5">How much extra does Stripe charge for international cards?</h4>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">Stripe adds a 1.5% fee for international cards, plus an additional 1% if currency conversion is required.</p>
+            </div>
+          
+            <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl">
+              <h4 class="font-bold text-slate-800 text-sm sm:text-base mb-1.5">How can I avoid Stripe international currency conversion fees?</h4>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">By connecting a Wise Business multi-currency account, you can receive foreign funds natively without suffering Stripe's automatic currency conversion markup.</p>
+            </div>
+          
+        </div>
+      </div>
+    </article>
+  </main>
+
+  
+  <footer class="bg-slate-900 text-slate-400 text-sm mt-16 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+        <div class="md:col-span-1">
+          <div class="flex items-center gap-2 mb-3">
+            <div class="w-8 h-8 rounded-lg bg-indigo-500 flex items-center justify-center text-white font-bold">⚡</div>
+            <span class="text-base font-bold text-white">FeeCalculators.pro</span>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed mb-4">
+            Free, fast, 100% client-side profit and fee calculators for modern online merchants, dropshippers, creators, and freelancers.
+          </p>
+          <div class="text-[11px] text-slate-500">
+            © 2026 FeeCalculators.pro. All rights reserved.
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-200 mb-3">Marketplaces & POD</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="etsy-fee-calculator.html" class="hover:text-white transition-colors">Etsy Fee Calculator</a></li>
+            <li><a href="shopify-vs-etsy-calculator.html" class="hover:text-white transition-colors">Shopify vs Etsy Comparison</a></li>
+            <li><a href="tiktok-shop-fee-calculator.html" class="hover:text-white transition-colors">TikTok Shop Fee Calculator</a></li>
+            <li><a href="ebay-final-value-calculator.html" class="hover:text-white transition-colors">eBay Final Value Calculator</a></li>
+            <li><a href="printful-dropshipping-calculator.html" class="hover:text-white transition-colors">Printful POD Calculator</a></li>
+            <li><a href="amazon-fba-margin-calculator.html" class="hover:text-white transition-colors">Amazon FBA Margin Calculator</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-200 mb-3">Payments & FX</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="stripe-fee-calculator.html" class="hover:text-white transition-colors">Stripe Fee Calculator</a></li>
+            <li><a href="paypal-international-calculator.html" class="hover:text-white transition-colors">PayPal International Fees</a></li>
+            <li><a href="wise-vs-paypal-calculator.html" class="hover:text-white transition-colors">Wise vs PayPal FX Comparison</a></li>
+            <li><a href="patreon-vs-substack-calculator.html" class="hover:text-white transition-colors">Patreon vs Substack Calculator</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-200 mb-3">Transparency & Disclosures</h4>
+          <p class="text-xs text-slate-400 leading-relaxed mb-3">
+            Calculators are built for educational and planning estimates. Fees reflect published standard 2026 platform schedules. We may earn an affiliate commission when you sign up through partner links at zero extra cost to you.
+          </p>
+          <div class="p-3 rounded-lg bg-slate-800/60 border border-slate-700/60 text-[11px] text-slate-400">
+            🔒 Fast & 100% private. All calculations run locally in your browser. No financial data is ever collected or stored.
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+        <div>All 10 calculators open instantly with zero install or login.</div>
+        <div class="flex items-center gap-4">
+          <a href="index.html" class="hover:text-slate-300">Directory</a>
+          <span>•</span>
+          <a href="sitemap.xml" class="hover:text-slate-300">Sitemap</a>
+          <span>•</span>
+          <a href="robots.txt" class="hover:text-slate-300">Robots.txt</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+
+  <!-- Affiliate Switchboard Script -->
+  <script src="affiliate-config.js"></script>
+
+  <!-- Interactive Calculation Script -->
+  <script>
+    function calculate() {
+      try {
+        
+      const rawAmount = parseFloat(document.getElementById('targetAmount').value) || 0;
+      const mode = document.getElementById('calcMode').value;
+      const cardType = document.getElementById('cardOrigin').value;
+      const billingRate = parseFloat(document.getElementById('stripeBilling').value) || 0;
+
+      let basePct = 0.029;
+      if (cardType === 'international') basePct = 0.044;
+      if (cardType === 'international_fx') basePct = 0.054;
+      const totalPct = basePct + billingRate;
+      const fixedFee = 0.30;
+
+      let grossRevenue = 0;
+      let stripeFee = 0;
+      let netTakeHome = 0;
+
+      if (mode === 'forward') {
+        grossRevenue = rawAmount;
+        stripeFee = (grossRevenue * totalPct) + fixedFee;
+        netTakeHome = grossRevenue - stripeFee;
+      } else {
+        // Reverse formula: To receive N net: Gross = (N + fixedFee) / (1 - totalPct)
+        netTakeHome = rawAmount;
+        grossRevenue = (netTakeHome + fixedFee) / (1 - totalPct);
+        stripeFee = grossRevenue - netTakeHome;
+      }
+
+      const margin = grossRevenue > 0 ? (netTakeHome / grossRevenue) * 100 : 0;
+
+      return {
+        grossRevenue,
+        totalFees: stripeFee,
+        totalCosts: 0,
+        netProfit: netTakeHome,
+        margin,
+        customMetrics: [
+          { label: mode === 'reverse' ? 'Recommended Invoice Amount' : 'Customer Pays', val: '$' + grossRevenue.toFixed(2), color: 'text-indigo-600' },
+          { label: 'Stripe Takes', val: '$' + stripeFee.toFixed(2), color: 'text-rose-600' },
+          { label: 'You Keep in Bank', val: '$' + netTakeHome.toFixed(2), color: 'text-emerald-600' }
+        ],
+        feeBreakdown: [
+          { label: 'Stripe Percentage Fee (' + (totalPct * 100).toFixed(2) + '%)', amount: grossRevenue * totalPct },
+          { label: 'Stripe Fixed Transaction Fee', amount: fixedFee }
+        ]
+      };
+    
+      } catch (err) {
+        console.error('Calculation error:', err);
+        return null;
+      }
+    }
+
+    function updateUI() {
+      const result = calculate();
+      if (!result) return;
+
+      const { grossRevenue, totalFees, totalCosts, netProfit, margin, feeBreakdown, customMetrics } = result;
+
+      // Net profit display
+      const netProfitEl = document.getElementById('netProfitDisplay');
+      netProfitEl.textContent = '$' + netProfit.toFixed(2);
+      if (netProfit < 0) {
+        netProfitEl.className = 'text-4xl sm:text-5xl font-extrabold text-rose-400 tracking-tight';
+      } else {
+        netProfitEl.className = 'text-4xl sm:text-5xl font-extrabold text-emerald-400 tracking-tight';
+      }
+
+      // Margin badge
+      const marginEl = document.getElementById('marginBadge');
+      marginEl.textContent = margin.toFixed(1) + '% Margin';
+
+      // Gross total
+      document.getElementById('grossDisplay').textContent = '$' + grossRevenue.toFixed(2) + ' Gross';
+
+      // Progress bars
+      const safeGross = grossRevenue > 0 ? grossRevenue : (totalFees + totalCosts + Math.abs(netProfit)) || 1;
+      const profitPct = Math.max(0, Math.min(100, (netProfit / safeGross) * 100));
+      const feesPct = Math.max(0, Math.min(100, (totalFees / safeGross) * 100));
+      const costsPct = Math.max(0, Math.min(100, (totalCosts / safeGross) * 100));
+
+      document.getElementById('barProfit').style.width = profitPct + '%';
+      document.getElementById('barFees').style.width = feesPct + '%';
+      document.getElementById('barCosts').style.width = costsPct + '%';
+
+      // Custom metrics if provided
+      const customContainer = document.getElementById('customMetricsContainer');
+      if (customMetrics && customMetrics.length > 0) {
+        customContainer.classList.remove('hidden');
+        customContainer.innerHTML = customMetrics.map(function(m) {
+          return '<div class="bg-slate-800/80 p-3 rounded-xl border border-slate-700/80">' +
+                 '<div class="text-[11px] text-slate-400 font-medium">' + m.label + '</div>' +
+                 '<div class="text-sm sm:text-base font-bold ' + (m.color || 'text-white') + '">' + m.val + '</div>' +
+                 '</div>';
+        }).join('');
+      } else {
+        customContainer.classList.add('hidden');
+      }
+
+      // Breakdown list
+      const breakdownEl = document.getElementById('feeBreakdownTable');
+      if (feeBreakdown && feeBreakdown.length > 0) {
+        breakdownEl.innerHTML = feeBreakdown.map(function(item) {
+          return '<div class="flex items-center justify-between py-2 border-b border-slate-100 last:border-0 text-xs sm:text-sm">' +
+                 '<span class="text-slate-600">' + item.label + '</span>' +
+                 '<span class="font-bold text-slate-900">$' + item.amount.toFixed(2) + '</span>' +
+                 '</div>';
+        }).join('') +
+          '<div class="flex items-center justify-between pt-2 border-t border-slate-200 text-xs sm:text-sm font-bold">' +
+          '<span class="text-slate-800">Total Deductions</span>' +
+          '<span class="text-rose-600">$' + (totalFees + totalCosts).toFixed(2) + '</span>' +
+          '</div>';
+      }
+
+      // Dynamically render switchboard affiliate card personalized with calculated total fees
+      if (typeof renderAffiliateCallout === 'function') {
+        renderAffiliateCallout('payments', 'affiliate-callout', totalFees);
+      }
+    }
+
+    // Attach reactive input listeners
+    document.querySelectorAll('.calc-input').forEach(input => {
+      input.addEventListener('input', updateUI);
+      input.addEventListener('change', updateUI);
+    });
+
+    // Reset button
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      document.getElementById('calcForm').reset();
+      updateUI();
+    });
+
+    // Run on initial page load
+    window.addEventListener('DOMContentLoaded', updateUI);
+  </script>
+</body>
+</html>

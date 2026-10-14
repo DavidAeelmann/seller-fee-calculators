@@ -1,0 +1,7 @@
+# robots.txt for FeeCalculators.pro
+# Replace 'https://DavidAeelmann.github.io/seller-fee-calculators' with your real URL
+
+User-agent: *
+Allow: /
+
+Sitemap: https://DavidAeelmann.github.io/seller-fee-calculators/sitemap.xml
