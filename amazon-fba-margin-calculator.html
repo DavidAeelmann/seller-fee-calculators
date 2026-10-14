@@ -227,7 +227,7 @@
         <!-- Net Result Banner Card -->
         <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-lg border border-slate-800">
           <div class="flex items-center justify-between mb-3">
-            <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Estimated Take-Home Profit</span>
+            <span id="netResultHeader" class="text-xs font-bold uppercase tracking-wider text-slate-400">Estimated Take-Home Profit</span>
             <span id="marginBadge" class="px-3 py-1 rounded-full text-xs font-extrabold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
               0.0% Margin
             </span>
@@ -235,7 +235,7 @@
 
           <div class="flex items-baseline gap-2 mb-5">
             <span id="netProfitDisplay" class="text-4xl sm:text-5xl font-black text-emerald-400 tracking-tight">$0.00</span>
-            <span class="text-xs text-slate-400 font-medium">net take-home</span>
+            <span id="netResultSubLabel" class="text-xs text-slate-400 font-medium">net take-home</span>
           </div>
 
           <!-- Dynamic Visual Bar -->
@@ -525,10 +525,17 @@
 
       const { grossRevenue, totalFees, totalCosts, netProfit, margin, feeBreakdown, customMetrics } = result;
 
+      // Dynamic header labels
+      const headerTitleEl = document.getElementById('netResultHeader');
+      if (headerTitleEl) headerTitleEl.textContent = result.headlineTitle || 'Estimated Take-Home Profit';
+      const subLabelEl = document.getElementById('netResultSubLabel');
+      if (subLabelEl) subLabelEl.textContent = result.subLabel || 'net take-home';
+
       // Net profit display
       const netProfitEl = document.getElementById('netProfitDisplay');
-      netProfitEl.textContent = '$' + netProfit.toFixed(2);
+      netProfitEl.textContent = (result.prefix || '$') + (netProfit >= 0 ? netProfit.toFixed(2) : Math.abs(netProfit).toFixed(2));
       if (netProfit < 0) {
+        netProfitEl.textContent = '-' + (result.prefix || '$') + Math.abs(netProfit).toFixed(2);
         netProfitEl.className = 'text-4xl sm:text-5xl font-black text-rose-400 tracking-tight';
       } else {
         netProfitEl.className = 'text-4xl sm:text-5xl font-black text-emerald-400 tracking-tight';

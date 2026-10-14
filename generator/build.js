@@ -173,19 +173,23 @@ const calculators = [
 
       return {
         grossRevenue,
-        totalFees: totalEtsyFees,
-        totalCosts: totalShopifyFees,
-        netProfit: difference,
+        headlineTitle: difference >= 0 ? 'Extra Profit with Shopify' : 'Etsy Advantage at this Volume',
+        subLabel: difference >= 0 ? 'more monthly take-home vs Etsy' : 'Shopify subscription is higher',
+        prefix: '+$',
+        totalFees: totalShopifyFees,
+        totalCosts: totalCogs,
+        netProfit: Math.abs(difference),
         margin: grossRevenue > 0 ? (shopifyProfit / grossRevenue) * 100 : 0,
         customMetrics: [
-          { label: 'Etsy Total Monthly Fees', val: '$' + totalEtsyFees.toFixed(2), color: 'text-amber-600' },
-          { label: 'Shopify Total Monthly Fees', val: '$' + totalShopifyFees.toFixed(2), color: 'text-emerald-600' },
-          { label: 'Etsy Monthly Take-Home', val: '$' + etsyProfit.toFixed(2), color: 'text-slate-800' },
-          { label: 'Shopify Monthly Take-Home', val: '$' + shopifyProfit.toFixed(2), color: 'text-indigo-600' }
+          { label: 'Etsy Monthly Take-Home', val: '$' + etsyProfit.toFixed(2), color: 'text-amber-400' },
+          { label: 'Shopify Monthly Take-Home', val: '$' + shopifyProfit.toFixed(2), color: 'text-emerald-400' },
+          { label: 'Etsy Monthly Platform Fees', val: '$' + totalEtsyFees.toFixed(2), color: 'text-rose-400' },
+          { label: 'Shopify Monthly Fees', val: '$' + totalShopifyFees.toFixed(2), color: 'text-indigo-400' }
         ],
         feeBreakdown: [
-          { label: 'Etsy Listing + Transaction + Processing', amount: totalEtsyFees },
-          { label: 'Shopify Subscription + Payment Processing', amount: totalShopifyFees }
+          { label: 'Etsy Platform Fees (Listing + Transaction + Processing)', amount: totalEtsyFees },
+          { label: 'Shopify Total Fees (Plan Subscription + Payment Processing)', amount: totalShopifyFees },
+          { label: 'Product Sourcing & Shipping COGS (' + orders + ' orders)', amount: totalCogs }
         ]
       };
     `,
@@ -682,14 +686,16 @@ const calculators = [
 
       return {
         grossRevenue,
+        headlineTitle: mode === 'reverse' ? 'Recommended Invoice Total' : 'Net Payout Received',
+        subLabel: mode === 'reverse' ? 'to receive exactly your desired net amount' : 'deposited to your bank account',
         totalFees: stripeFee,
         totalCosts: 0,
-        netProfit: netTakeHome,
+        netProfit: mode === 'reverse' ? grossRevenue : netTakeHome,
         margin,
         customMetrics: [
-          { label: mode === 'reverse' ? 'Recommended Invoice Amount' : 'Customer Pays', val: '$' + grossRevenue.toFixed(2), color: 'text-indigo-600' },
-          { label: 'Stripe Takes', val: '$' + stripeFee.toFixed(2), color: 'text-rose-600' },
-          { label: 'You Keep in Bank', val: '$' + netTakeHome.toFixed(2), color: 'text-emerald-600' }
+          { label: mode === 'reverse' ? 'Recommended Invoice Amount' : 'Customer Pays', val: '$' + grossRevenue.toFixed(2), color: 'text-indigo-400' },
+          { label: 'Stripe Total Processing Fee', val: '$' + stripeFee.toFixed(2), color: 'text-rose-400' },
+          { label: 'You Keep in Bank Account', val: '$' + netTakeHome.toFixed(2), color: 'text-emerald-400' }
         ],
         feeBreakdown: [
           { label: 'Stripe Percentage Fee (' + (totalPct * 100).toFixed(2) + '%)', amount: grossRevenue * totalPct },
@@ -870,18 +876,22 @@ const calculators = [
 
       return {
         grossRevenue: invoice,
-        totalFees: totalPayPalLoss,
-        totalCosts: totalWiseLoss,
+        headlineTitle: 'Extra Money Kept with Wise',
+        subLabel: 'saved vs PayPal fees & FX spread markups',
+        prefix: '+$',
+        totalFees: totalWiseLoss,
+        totalCosts: 0,
         netProfit: moneySavedWithWise,
-        margin,
+        margin: invoice > 0 ? (wiseTakeHome / invoice) * 100 : 0,
         customMetrics: [
-          { label: 'Lost to PayPal Fees & FX', val: '$' + totalPayPalLoss.toFixed(2), color: 'text-rose-600' },
-          { label: 'Lost to Wise Transparent Fee', val: '$' + totalWiseLoss.toFixed(2), color: 'text-emerald-600' },
-          { label: 'Extra Cash in Your Pocket with Wise', val: '+$' + moneySavedWithWise.toFixed(2), color: 'text-emerald-700' }
+          { label: 'Lost to PayPal Fees & FX', val: '$' + totalPayPalLoss.toFixed(2), color: 'text-rose-400' },
+          { label: 'Lost to Wise Transparent Fee', val: '$' + totalWiseLoss.toFixed(2), color: 'text-emerald-400' },
+          { label: 'PayPal Net Take-Home', val: '$' + payPalTakeHome.toFixed(2), color: 'text-slate-300' },
+          { label: 'Wise Net Take-Home', val: '$' + wiseTakeHome.toFixed(2), color: 'text-emerald-400' }
         ],
         feeBreakdown: [
-          { label: 'PayPal Cross-Border & FX Deduction', amount: totalPayPalLoss },
-          { label: 'Wise Mid-Market Transfer Fee', amount: totalWiseLoss }
+          { label: 'Wise Transparent Exchange Fee (~' + (wiseRate * 100).toFixed(2) + '%)', amount: totalWiseLoss },
+          { label: 'PayPal Equivalent Platform Fee & FX Spread (Hidden Loss)', amount: totalPayPalLoss }
         ]
       };
     `,
@@ -960,19 +970,22 @@ const calculators = [
 
       return {
         grossRevenue,
+        headlineTitle: 'Substack Monthly Net Income',
+        subLabel: 'take-home pay after platform & payment processing',
         totalFees: totalSubstackDeductions,
-        totalCosts: totalPatreonDeductions,
+        totalCosts: 0,
         netProfit: substackNet,
-        margin,
+        margin: grossRevenue > 0 ? (substackNet / grossRevenue) * 100 : 0,
         customMetrics: [
-          { label: 'Patreon Total Monthly Fees', val: '$' + totalPatreonDeductions.toFixed(2), color: 'text-amber-600' },
-          { label: 'Substack Total Monthly Fees', val: '$' + totalSubstackDeductions.toFixed(2), color: 'text-indigo-600' },
-          { label: 'Patreon Monthly Take-Home', val: '$' + patreonNet.toFixed(2), color: 'text-slate-800' },
-          { label: 'Substack Monthly Take-Home', val: '$' + substackNet.toFixed(2), color: 'text-emerald-600' }
+          { label: 'Substack Monthly Take-Home', val: '$' + substackNet.toFixed(2), color: 'text-emerald-400' },
+          { label: 'Patreon Monthly Take-Home', val: '$' + patreonNet.toFixed(2), color: 'text-amber-400' },
+          { label: 'Substack Platform + Processing Fees', val: '$' + totalSubstackDeductions.toFixed(2), color: 'text-indigo-400' },
+          { label: 'Patreon Total Fees (' + (patreonRate * 100) + '% tier)', val: '$' + totalPatreonDeductions.toFixed(2), color: 'text-rose-400' }
         ],
         feeBreakdown: [
-          { label: 'Platform Cut (Patreon ' + (patreonRate * 100) + '% vs Substack 10%)', amount: substackPlatformFee },
-          { label: 'Stripe Payment Processing (2.9% + 30¢ per sub)', amount: substackProcessing }
+          { label: 'Substack Flat 10% Platform Commission', amount: substackPlatformFee },
+          { label: 'Stripe Credit Card Processing (2.9% + 30¢ per active member)', amount: substackProcessing },
+          { label: 'Comparison: Patreon Total Deductions at same volume', amount: totalPatreonDeductions }
         ]
       };
     `,
@@ -1474,7 +1487,7 @@ function generateCalculatorPages() {
         <!-- Net Result Banner Card -->
         <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-lg border border-slate-800">
           <div class="flex items-center justify-between mb-3">
-            <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Estimated Take-Home Profit</span>
+            <span id="netResultHeader" class="text-xs font-bold uppercase tracking-wider text-slate-400">Estimated Take-Home Profit</span>
             <span id="marginBadge" class="px-3 py-1 rounded-full text-xs font-extrabold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
               0.0% Margin
             </span>
@@ -1482,7 +1495,7 @@ function generateCalculatorPages() {
 
           <div class="flex items-baseline gap-2 mb-5">
             <span id="netProfitDisplay" class="text-4xl sm:text-5xl font-black text-emerald-400 tracking-tight">$0.00</span>
-            <span class="text-xs text-slate-400 font-medium">net take-home</span>
+            <span id="netResultSubLabel" class="text-xs text-slate-400 font-medium">net take-home</span>
           </div>
 
           <!-- Dynamic Visual Bar -->
@@ -1604,10 +1617,17 @@ function generateCalculatorPages() {
 
       const { grossRevenue, totalFees, totalCosts, netProfit, margin, feeBreakdown, customMetrics } = result;
 
+      // Dynamic header labels
+      const headerTitleEl = document.getElementById('netResultHeader');
+      if (headerTitleEl) headerTitleEl.textContent = result.headlineTitle || 'Estimated Take-Home Profit';
+      const subLabelEl = document.getElementById('netResultSubLabel');
+      if (subLabelEl) subLabelEl.textContent = result.subLabel || 'net take-home';
+
       // Net profit display
       const netProfitEl = document.getElementById('netProfitDisplay');
-      netProfitEl.textContent = '$' + netProfit.toFixed(2);
+      netProfitEl.textContent = (result.prefix || '$') + (netProfit >= 0 ? netProfit.toFixed(2) : Math.abs(netProfit).toFixed(2));
       if (netProfit < 0) {
+        netProfitEl.textContent = '-' + (result.prefix || '$') + Math.abs(netProfit).toFixed(2);
         netProfitEl.className = 'text-4xl sm:text-5xl font-black text-rose-400 tracking-tight';
       } else {
         netProfitEl.className = 'text-4xl sm:text-5xl font-black text-emerald-400 tracking-tight';
